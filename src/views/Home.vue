@@ -1,6 +1,10 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    <div class="user-actions">
+      <button>Sign Up!</button>
+      <button>Sign In</button>
+    </div>
   </div>
 </template>
 
