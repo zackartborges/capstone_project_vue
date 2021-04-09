@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <div class="user-actions">
-      <button>Sign Up!</button>
+    <div class="login">
       <button>Sign In</button>
     </div>
   </div>
@@ -14,10 +13,12 @@
 export default {
   data: function () {
     return {
-      message: "Welcome to Vue.js!",
+      message: "Welcome to OurPack",
     };
   },
   created: function () {},
-  methods: {},
+  methods: {
+    login: function () {},
+  },
 };
 </script>
