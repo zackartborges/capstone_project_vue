@@ -71,6 +71,8 @@
       </span>
       |
       <router-link to="/example">Example</router-link>
+      |
+      <router-link to="/new">Your Pack</router-link>
     </div>
     <router-view />
   </div>

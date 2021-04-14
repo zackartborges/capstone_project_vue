@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import Logout from "../views/Logout.vue";
 import Example from "../views/Example.vue";
+import PackNew from "../views/PackNew.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/example",
     name: "Example",
     component: Example,
+  },
+  {
+    path: "/new",
+    name: "PackNew",
+    component: PackNew,
   },
   {
     path: "/about",
