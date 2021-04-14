@@ -1,13 +1,26 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    <div class="testimonial">
+      <p>
+        For hikers and travelers, a website where your gear is organized and displayed in front of you. (whether you are
+        backpacking or hiking)
+      </p>
+    </div>
+    <div class="buttons">
+      <router-link to="/signup" tag="button">Signup!</router-link>
+      <br />
+      <br />
+      <router-link to="/login" tag="button">Click me for login</router-link>
+    </div>
+    <p></p>
   </div>
 </template>
 
 <style></style>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function () {
     return {
@@ -19,27 +32,6 @@ export default {
     };
   },
   created: function () {},
-  methods: {
-    login: function () {},
-    submit: function () {
-      var params = {
-        email: this.email,
-        password: this.password,
-      };
-      axios
-        .post("/api/sessions", params)
-        .then((response) => {
-          axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
-          localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log(error.response);
-          this.errors = ["Invalid email or password."];
-          this.email = "";
-          this.password = "";
-        });
-    },
-  },
+  methods: {},
 };
 </script>
