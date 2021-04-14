@@ -59,12 +59,16 @@
     </nav> -->
     <div id="nav">
       <router-link to="/">Home</router-link>
-      |
-      <router-link to="/login">Login</router-link>
-      |
-      <router-link to="/signup">Signup</router-link>
-      |
-      <router-link to="/logout">Logout</router-link>
+      <span v-if="isLoggedIn()">
+        |
+        <router-link to="/logout">Logout</router-link>
+      </span>
+      <span v-else>
+        |
+        <router-link to="/login">Login</router-link>
+        |
+        <router-link to="/signup">Signup</router-link>
+      </span>
     </div>
     <router-view />
   </div>
@@ -92,4 +96,18 @@
   color: #42b983;
 }
 </style>
-<script></script>
+<script>
+export default {
+  data: function () {
+    return {
+      errors: [],
+    };
+  },
+  created: function () {},
+  methods: {
+    isLoggedIn: function () {
+      return localStorage.getItem("jwt");
+    },
+  },
+};
+</script>
