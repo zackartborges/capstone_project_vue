@@ -69,6 +69,8 @@
         |
         <router-link to="/signup">Signup</router-link>
       </span>
+      |
+      <router-link to="/example">Example</router-link>
     </div>
     <router-view />
   </div>
