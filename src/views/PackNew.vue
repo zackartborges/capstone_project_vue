@@ -41,6 +41,24 @@ export default {
         console.log("all packs:", this.packs);
       });
     },
+    createGear: function () {
+      console.log("adding gear..");
+      var params = {
+        title: this.newgearTitle,
+        year: this.newgearYear,
+        plot: this.newgearPlot,
+        director: this.newgearDirector,
+      };
+      axios
+        .post("/api/gears", params)
+        .then((response) => {
+          console.log("Successfully added gear!", response.data);
+          this.gears.push(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
   },
 };
 </script>
