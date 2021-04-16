@@ -40,7 +40,36 @@
         Quantity:
         <p>{{ pack.gear_quantity }}</p>
         <span class="edit">
-          <button>Edit</button>
+          <button v-on:click="showGear(gear)">Edit!</button>
+
+          <dialog id="gear-details">
+            <form method="dialog">
+              <h1>Gear Info</h1>
+              <p>
+                Name:
+                <input type="text" v-model="currentGear.gear_name" />
+              </p>
+              <p>
+                Description:
+                <input type="text" v-model="currentGear.gear_description" />
+              </p>
+              <p>
+                Weight:
+                <input type="text" v-model="currentGear.gear_weight" />
+              </p>
+              <p>
+                Quantity:
+                <input type="text" v-model="currentGear.gear_quantity" />
+              </p>
+              <p>
+                Url:
+                <input type="text" v-model="currentGear.gear_url" />
+              </p>
+              <button v-on:click="updateGear(currentGear)">Update</button>
+              <button v-on:click="destroyGear(currentGear)">Destroy</button>
+              <button>Close</button>
+            </form>
+          </dialog>
         </span>
         <hr />
         <!-- <p>{{ pack.gear.description }}</p>
@@ -64,6 +93,7 @@ export default {
       newGearWeight: "",
       newGearQuantity: "",
       newGearUrl: "",
+      currentGear: {},
     };
   },
   created: function () {
@@ -103,6 +133,11 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    showGear: function (gear) {
+      console.log(gear);
+      this.currentGear = gear;
+      document.querySelector("#gear-details").showModal();
     },
   },
 };
