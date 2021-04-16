@@ -1,5 +1,26 @@
 <template>
   <div class="home">
+    <form @submit.prevent="submitForm">
+      <div>
+        Name
+        <input type="text" v-model="newGearName" />
+        Description:
+        <input type="text" v-model="newGearDescription" />
+        Weight:
+        <input type="text" v-model="newGearWeight" />
+        Quantity
+        <input type="text" v-model="newGearQuantity" />
+        <!-- <p vif:="!plotIsValid" class="error-message">The Plot is too long.</p>
+        Director: -->
+        <!-- <input type="text" v-model="newMovieDirector" /> -->
+
+        <button v-on:click="createGear">Add a new Item</button>
+      </div>
+      <!-- <div v-for="pack in packs" v-bind:key="pack">
+        <h1>{{ movie.title }}</h1>
+        <button v-on:click="showMovie(movie)">More info!</button>
+      </div> -->
+    </form>
     <div class="example">
       <div v-for="pack in packs" :key="pack.id">
         <p>{{ pack.id }}</p>
@@ -29,6 +50,10 @@ export default {
       message: "Create your pack here.",
       packs: [],
       user: "",
+      newGearName: "",
+      newGearDescription: "",
+      newGearWeight: "",
+      newGearQuantity: "",
     };
   },
   created: function () {
@@ -41,13 +66,14 @@ export default {
         console.log("all packs:", this.packs);
       });
     },
+    // need to make sure that when gear is added while someone is logged in, the gear will be added to the db, but it will automatically be addedd to their "pack" as well
     createGear: function () {
       console.log("adding gear..");
       var params = {
-        title: this.newgearTitle,
-        year: this.newgearYear,
-        plot: this.newgearPlot,
-        director: this.newgearDirector,
+        title: this.newGearName,
+        year: this.newGearDescription,
+        plot: this.newGearWeight,
+        director: this.newGearQuantity,
       };
       axios
         .post("/api/gears", params)
