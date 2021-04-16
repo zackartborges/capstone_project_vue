@@ -1,15 +1,19 @@
 <template>
   <div class="home">
-    <form @submit.prevent="submitForm">
+    <!-- form for input for new gear -->
+    <form>
+      <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
       <div>
-        Name
+        Name:
         <input type="text" v-model="newGearName" />
         Description:
         <input type="text" v-model="newGearDescription" />
         Weight:
         <input type="text" v-model="newGearWeight" />
-        Quantity
+        Quantity:
         <input type="text" v-model="newGearQuantity" />
+        Gear URL:
+        <input type="text" v-model="newGearUrl" />
         <!-- <p vif:="!plotIsValid" class="error-message">The Plot is too long.</p>
         Director: -->
         <!-- <input type="text" v-model="newMovieDirector" /> -->
@@ -54,12 +58,21 @@ export default {
       newGearDescription: "",
       newGearWeight: "",
       newGearQuantity: "",
+      newGearUrl: "",
     };
   },
   created: function () {
     this.indexPacks();
   },
   methods: {
+    // submitForm() {
+    //   var plotIsValid = this.form.newMoviePlot.length < 20;
+    //   if (plotIsValid) {
+    //     console.log("form submitted");
+    //   } else {
+    //     console.log("invalid form");
+    //   }
+    // },
     indexPacks: function () {
       axios.get("/api/packs").then((response) => {
         this.packs = response.data;
@@ -70,10 +83,11 @@ export default {
     createGear: function () {
       console.log("adding gear..");
       var params = {
-        title: this.newGearName,
-        year: this.newGearDescription,
-        plot: this.newGearWeight,
-        director: this.newGearQuantity,
+        item_name: this.newGearName,
+        item_description: this.newGearDescription,
+        item_weight: this.newGearWeight,
+        item_quantity: this.newGearQuantity,
+        item_url: this.newGearUrl,
       };
       axios
         .post("/api/gears", params)
