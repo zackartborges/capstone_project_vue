@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- Need to create current user = to only display pack of who is logged in -->
     <!-- form for input for new gear -->
     <form>
       <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
@@ -36,6 +37,9 @@
         <p>{{ pack.gear_weight }} oz.</p>
         Quantity:
         <p>{{ pack.gear_quantity }}</p>
+        <span class="edit">
+          <button>Edit</button>
+        </span>
         <hr />
         <!-- <p>{{ pack.gear.description }}</p>
       <p>{{ pack.gear.weight }}</p> -->
