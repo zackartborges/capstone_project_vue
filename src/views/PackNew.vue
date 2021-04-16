@@ -1,9 +1,10 @@
 <template>
-  <div class="home">
+  <div id="app">
     <!-- Need to create current user = to only display pack of who is logged in -->
     <!-- form for input for new gear -->
+    <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
+
     <form>
-      <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
       <div>
         Name:
         <input type="text" v-model="newGearName" />
@@ -26,6 +27,7 @@
         <button v-on:click="showMovie(movie)">More info!</button>
       </div> -->
     </form>
+    <!-- for loop -->
     <div class="example">
       <div v-for="pack in packs" :key="pack.id">
         <p>{{ pack.id }}</p>
@@ -48,10 +50,9 @@
   </div>
 </template>
 
-<style></style>
-
 <script>
 import axios from "axios";
+
 export default {
   data: function () {
     return {
