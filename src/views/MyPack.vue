@@ -139,6 +139,18 @@ export default {
       this.currentGear = gear;
       document.querySelector("#gear-details").showModal();
     },
+    updateGear: function (gear) {
+      var params = {
+        item_name: gear.item_name,
+        item_description: gear.item_description,
+        item_weight: gear.item_weight,
+        item_quantity: gear.item_quantity,
+        item_url: gear.item_url,
+      };
+      axios.patch("/api/gears/" + gear.id, params).then((response) => {
+        console.log("Success", response.data);
+      });
+    },
   },
 };
 </script>
