@@ -29,41 +29,41 @@
     </form>
     <!-- for loop -->
     <div class="example">
-      <div v-for="pack in packs" :key="pack.id">
-        <p>{{ pack.id }}</p>
+      <div v-for="gear in gears" :key="gear.id">
+        <p>{{ gear.id }}</p>
         Name:
-        <p>{{ pack.gear_name }}</p>
+        <p>{{ gear.item_name }}</p>
         Description:
-        <p>{{ pack.gear_description }}</p>
+        <p>{{ gear.item_description }}</p>
         Weight:
-        <p>{{ pack.gear_weight }} oz.</p>
+        <p>{{ gear.item_weight }} oz.</p>
         Quantity:
-        <p>{{ pack.gear_quantity }}</p>
+        <p>{{ gear.item_quantity }}</p>
         <span class="edit">
-          <button v-on:click="showGear(gear)">Edit!</button>
+          <button v-on:click="showGear(currentGear)">Edit!</button>
 
           <dialog id="gear-details">
             <form method="dialog">
               <h1>Gear Info</h1>
               <p>
                 Name:
-                <input type="text" v-model="currentGear.gear_name" />
+                <input type="text" v-model="currentGear.item_name" />
               </p>
               <p>
                 Description:
-                <input type="text" v-model="currentGear.gear_description" />
+                <input type="text" v-model="currentGear.item_description" />
               </p>
               <p>
                 Weight:
-                <input type="text" v-model="currentGear.gear_weight" />
+                <input type="text" v-model="currentGear.item_weight" />
               </p>
               <p>
                 Quantity:
-                <input type="text" v-model="currentGear.gear_quantity" />
+                <input type="text" v-model="currentGear.item_quantity" />
               </p>
               <p>
                 Url:
-                <input type="text" v-model="currentGear.gear_url" />
+                <input type="text" v-model="currentGear.item_url" />
               </p>
               <button v-on:click="updateGear(currentGear)">Update</button>
               <button v-on:click="destroyGear(currentGear)">Destroy</button>
@@ -86,8 +86,9 @@ export default {
   data: function () {
     return {
       message: "Create your pack here.",
-      packs: [],
+      gears: [],
       user: "",
+      gear: {},
       newGearName: "",
       newGearDescription: "",
       newGearWeight: "",
@@ -97,7 +98,7 @@ export default {
     };
   },
   created: function () {
-    this.indexPacks();
+    this.indexGears();
   },
   methods: {
     // submitForm() {
@@ -108,10 +109,10 @@ export default {
     //     console.log("invalid form");
     //   }
     // },
-    indexPacks: function () {
-      axios.get("/api/packs").then((response) => {
-        this.packs = response.data;
-        console.log("all packs:", this.packs);
+    indexGears: function () {
+      axios.get("/api/gears").then((response) => {
+        this.gears = response.data;
+        console.log("all gears:", this.gears);
       });
     },
     // need to make sure that when gear is added while someone is logged in, the gear will be added to the db, but it will automatically be addedd to their "pack" as well
@@ -135,6 +136,10 @@ export default {
         });
     },
     showGear: function (gear) {
+      axios.get("/api/gears/" + this.$route.params.id).then((response) => {
+        console.log(response.data);
+        this.gear = response.data;
+      });
       console.log(gear);
       this.currentGear = gear;
       document.querySelector("#gear-details").showModal();
