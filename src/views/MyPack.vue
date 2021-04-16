@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="my-pack">
     <!-- Need to create current user = to only display pack of who is logged in -->
     <!-- form for input for new gear -->
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
@@ -29,7 +29,7 @@
     </form>
     <!-- for loop -->
     <div class="example">
-      <div v-for="gear in gears" :key="gear.id">
+      <div v-for="gear in gears" v-bind:key="gear.id">
         <p>{{ gear.id }}</p>
         Name:
         <p>{{ gear.item_name }}</p>
@@ -39,9 +39,8 @@
         <p>{{ gear.item_weight }} oz.</p>
         Quantity:
         <p>{{ gear.item_quantity }}</p>
+        <button v-on:click="showGear(gear)">Edit!</button>
         <span class="edit">
-          <button v-on:click="showGear(currentGear)">Edit!</button>
-
           <dialog id="gear-details">
             <form method="dialog">
               <h1>Gear Info</h1>
@@ -88,7 +87,7 @@ export default {
       message: "Create your pack here.",
       gears: [],
       user: "",
-      gear: {},
+      // gear: {},
       newGearName: "",
       newGearDescription: "",
       newGearWeight: "",
@@ -136,10 +135,6 @@ export default {
         });
     },
     showGear: function (gear) {
-      axios.get("/api/gears/" + this.$route.params.id).then((response) => {
-        console.log(response.data);
-        this.gear = response.data;
-      });
       console.log(gear);
       this.currentGear = gear;
       document.querySelector("#gear-details").showModal();

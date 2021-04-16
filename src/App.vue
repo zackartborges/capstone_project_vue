@@ -72,7 +72,7 @@
       |
       <router-link to="/example">Example</router-link>
       |
-      <router-link to="/new">Your Pack</router-link>
+      <router-link to="/my-pack">Your Pack</router-link>
     </div>
     <router-view />
   </div>

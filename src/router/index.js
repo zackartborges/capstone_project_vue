@@ -5,7 +5,7 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import Logout from "../views/Logout.vue";
 import Example from "../views/Example.vue";
-import PackNew from "../views/PackNew.vue";
+import MyPack from "../views/MyPack.vue";
 
 Vue.use(VueRouter);
 
@@ -36,9 +36,9 @@ const routes = [
     component: Example,
   },
   {
-    path: "/new",
-    name: "PackNew",
-    component: PackNew,
+    path: "/my_pack",
+    name: "MyPack",
+    component: MyPack,
   },
   {
     path: "/about",
