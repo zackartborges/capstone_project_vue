@@ -151,6 +151,13 @@ export default {
         console.log("Success", response.data);
       });
     },
+    destroyGear: function (gear) {
+      axios.delete("/api/gears/" + gear.id).then((response) => {
+        console.log("Success!", response.data);
+        var index = this.gears.indexOf(gear);
+        this.gears.splice(index, 1);
+      });
+    },
   },
 };
 </script>
