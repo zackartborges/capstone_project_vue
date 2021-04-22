@@ -29,7 +29,7 @@
     </form>
     <!-- for loop -->
     <div class="my-pack">
-      <div v-for="gear in gears" v-bind:key="gear.id">
+      <div v-for="gear in user.gear" v-bind:key="gear.id">
         <p>{{ gear.id }}</p>
         Name:
         <p>{{ gear.item_name }}</p>
@@ -86,7 +86,7 @@ export default {
     return {
       message: "Create your pack here.",
       gears: [],
-      user: "",
+      user: {},
       // gear: {},
       newGearName: "",
       newGearDescription: "",
@@ -97,7 +97,7 @@ export default {
     };
   },
   created: function () {
-    this.indexGears();
+    this.showUser();
   },
   methods: {
     // submitForm() {
@@ -108,10 +108,16 @@ export default {
     //     console.log("invalid form");
     //   }
     // },
-    indexGears: function () {
-      axios.get("/api/gears").then((response) => {
-        this.gears = response.data;
-        console.log("all gears:", this.gears);
+    // indexGears: function () {
+    //   axios.get("/api/gears").then((response) => {
+    //     this.gears = response.data;
+    //     console.log("all gears:", this.gears);
+    //   });
+    // },
+    showUser: function () {
+      axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+        this.user = response.data;
+        console.log("user:", this.user);
       });
     },
     // need to make sure that when gear is added while someone is logged in, the gear will be added to the db, but it will automatically be addedd to their "pack" as well

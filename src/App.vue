@@ -72,7 +72,7 @@
       |
       <router-link to="/example">Example</router-link>
       |
-      <router-link to="/my-pack">Your Pack</router-link>
+      <router-link v-bind:to="`/my-pack/${getUserId()}`">Your Pack</router-link>
     </div>
     <router-view />
   </div>
@@ -111,6 +111,9 @@ export default {
   methods: {
     isLoggedIn: function () {
       return localStorage.getItem("jwt");
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
     },
   },
 };

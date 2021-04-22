@@ -36,7 +36,7 @@ const routes = [
     component: Example,
   },
   {
-    path: "/my-pack",
+    path: "/my-pack/:id",
     name: "MyPack",
     component: MyPack,
   },
