@@ -5,6 +5,7 @@
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
 
     <form>
+      {{ message }}
       <div>
         Name:
         <input type="text" v-model="newGearName" />
@@ -84,7 +85,6 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Create your pack here.",
       gears: [],
       user: {},
       // gear: {},
@@ -94,6 +94,8 @@ export default {
       newGearQuantity: "",
       newGearUrl: "",
       currentGear: {},
+      // need to fix. why does user.name break everything
+      message: `Welcome! ${this.user} `,
     };
   },
   created: function () {
