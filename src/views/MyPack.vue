@@ -28,7 +28,7 @@
       </div> -->
     </form>
     <!-- for loop -->
-    <div class="example">
+    <div class="my-pack">
       <div v-for="gear in gears" v-bind:key="gear.id">
         <p>{{ gear.id }}</p>
         Name:
