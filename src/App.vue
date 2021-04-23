@@ -62,6 +62,10 @@
       <span v-if="isLoggedIn()">
         |
         <router-link to="/logout">Logout</router-link>
+        |
+        <router-link to="/example">Example</router-link>
+        |
+        <router-link v-bind:to="`/my-pack/${getUserId()}`">Your Pack</router-link>
       </span>
       <span v-else>
         |
@@ -69,10 +73,6 @@
         |
         <router-link to="/signup">Signup</router-link>
       </span>
-      |
-      <router-link to="/example">Example</router-link>
-      |
-      <router-link v-bind:to="`/my-pack/${getUserId()}`">Your Pack</router-link>
     </div>
     <router-view />
   </div>
