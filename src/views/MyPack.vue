@@ -138,7 +138,7 @@ export default {
         .post("/api/gears", params)
         .then((response) => {
           console.log(response.data);
-          this.gears.push(response.data);
+          this.user.gear.push(response.data);
         })
         .catch((error) => {
           console.log(error.response);
