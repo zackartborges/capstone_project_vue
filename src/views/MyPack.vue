@@ -2,12 +2,12 @@
   <div id="my-pack">
     <!-- Need to create current user = to only display pack of who is logged in -->
     <!-- form for input for new gear -->
-    <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out-->
+    <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
 
     <form>
       {{ message }}
       <div class="gears-new">
-        <form v-on:submit.prevent="createGear()">
+        <form>
           <!-- text boxes for newGear -->
           Name:
           <input type="text" v-model="newGearName" />
@@ -19,11 +19,7 @@
           <input type="text" v-model="newGearQuantity" />
           Gear URL:
           <input type="text" v-model="newGearUrl" />
-          <!-- <p vif:="!plotIsValid" class="error-message">The Plot is too long.</p>
-        Director: -->
-          <!-- <input type="text" v-model="newMovieDirector" /> -->
-
-          <button>Add a new Item</button>
+          <button v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
       </div>
       <!-- <div v-for="pack in packs" v-bind:key="pack">
@@ -33,6 +29,8 @@
     </form>
     <!-- for loop -->
     <div class="my-pack">
+      <!-- if no gear, say this: -->
+      <!-- <div v-if="gears.length === 0">Put In some Gear!</div> -->
       <div v-for="gear in user.gear" v-bind:key="gear.id">
         <p>{{ gear.id }}</p>
         Name:
@@ -139,7 +137,7 @@ export default {
       axios
         .post("/api/gears", params)
         .then((response) => {
-          console.log(response.data.full_message);
+          console.log(response.data);
           this.gears.push(response.data);
         })
         .catch((error) => {

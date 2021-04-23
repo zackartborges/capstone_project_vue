@@ -1,6 +1,6 @@
 <template>
   <div class="example">
-    <div v-for="gear in gears" :key="gear.id">
+    <div v-for="gear in user.gear" :key="gear.id">
       <p>{{ gear.id }}</p>
       Name:
       <p>{{ gear.item_name }}</p>
@@ -32,13 +32,19 @@ export default {
     };
   },
   created: function () {
-    this.indexPacks();
+    this.showUser();
   },
   methods: {
     indexPacks: function () {
-      axios.get("/api/gears").then((response) => {
+      axios.get("/api/gears/").then((response) => {
         this.gears = response.data;
         console.log("all gear:", this.gears);
+      });
+    },
+    showUser: function () {
+      axios.get(`/api/users/5`).then((response) => {
+        this.user = response.data;
+        console.log("user:", this.user);
       });
     },
   },
