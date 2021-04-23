@@ -1,15 +1,15 @@
 <template>
   <div class="example">
-    <div v-for="pack in packs" :key="pack.id">
-      <p>{{ pack.id }}</p>
+    <div v-for="gear in gears" :key="gear.id">
+      <p>{{ gear.id }}</p>
       Name:
-      <p>{{ pack.gear_name }}</p>
+      <p>{{ gear.item_name }}</p>
       Description:
-      <p>{{ pack.gear_description }}</p>
+      <p>{{ gear.item_description }}</p>
       Weight:
-      <p>{{ pack.gear_weight }} oz.</p>
+      <p>{{ gear.item_weight }} oz.</p>
       Quantity:
-      <p>{{ pack.gear_quantity }}</p>
+      <p>{{ gear.item_quantity }}</p>
       <hr />
       <!-- <p>{{ pack.gear.description }}</p>
       <p>{{ pack.gear.weight }}</p> -->
@@ -26,7 +26,8 @@ export default {
   data: function () {
     return {
       message: "Example Page",
-      packs: [],
+      gears: [],
+      gear: "",
       user: "",
     };
   },
@@ -35,9 +36,9 @@ export default {
   },
   methods: {
     indexPacks: function () {
-      axios.get("/api/packs").then((response) => {
-        this.packs = response.data;
-        console.log("all packs:", this.packs);
+      axios.get("/api/gears").then((response) => {
+        this.gears = response.data;
+        console.log("all gear:", this.gears);
       });
     },
   },
