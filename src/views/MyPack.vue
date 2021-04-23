@@ -6,22 +6,25 @@
 
     <form>
       {{ message }}
-      <div>
-        Name:
-        <input type="text" v-model="newGearName" />
-        Description:
-        <input type="text" v-model="newGearDescription" />
-        Weight:
-        <input type="text" v-model="newGearWeight" />
-        Quantity:
-        <input type="text" v-model="newGearQuantity" />
-        Gear URL:
-        <input type="text" v-model="newGearUrl" />
-        <!-- <p vif:="!plotIsValid" class="error-message">The Plot is too long.</p>
+      <div class="gears-new">
+        <form v-on:submit.prevent="createGear()">
+          <!-- text boxes for newGear -->
+          Name:
+          <input type="text" v-model="newGearName" />
+          Description:
+          <input type="text" v-model="newGearDescription" />
+          Weight:
+          <input type="text" v-model="newGearWeight" />
+          Quantity:
+          <input type="text" v-model="newGearQuantity" />
+          Gear URL:
+          <input type="text" v-model="newGearUrl" />
+          <!-- <p vif:="!plotIsValid" class="error-message">The Plot is too long.</p>
         Director: -->
-        <!-- <input type="text" v-model="newMovieDirector" /> -->
+          <!-- <input type="text" v-model="newMovieDirector" /> -->
 
-        <button v-on:click="createGear">Add a new Item</button>
+          <button>Add a new Item</button>
+        </form>
       </div>
       <!-- <div v-for="pack in packs" v-bind:key="pack">
         <h1>{{ movie.title }}</h1>
@@ -41,7 +44,7 @@
         Quantity:
         <p>{{ gear.item_quantity }}</p>
         <button v-on:click="showGear(gear)">Edit!</button>
-        <span class="edit">
+        <span class="edit-gear">
           <dialog id="gear-details">
             <form method="dialog">
               <h1>Gear Info</h1>
@@ -122,10 +125,11 @@ export default {
         console.log("user:", this.user);
       });
     },
-    // need to make sure that when gear is added while someone is logged in, the gear will be added to the db, but it will automatically be addedd to their "pack" as well
+    // need to fix create gear id
     createGear: function () {
       console.log("adding gear..");
       var params = {
+        // user_id: this.user.id,
         item_name: this.newGearName,
         item_description: this.newGearDescription,
         item_weight: this.newGearWeight,
@@ -135,10 +139,11 @@ export default {
       axios
         .post("/api/gears", params)
         .then((response) => {
-          console.log("Successfully added gear!", response.data);
+          console.log(response.data.full_message);
           this.gears.push(response.data);
         })
         .catch((error) => {
+          console.log(error.response);
           this.errors = error.response.data.errors;
         });
     },
