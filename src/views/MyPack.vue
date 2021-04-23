@@ -66,8 +66,8 @@
                 Url:
                 <input type="text" v-model="currentGear.item_url" />
               </p>
-              <button v-on:click="updateGear(currentGear)">Update</button>
-              <button v-on:click="destroyGear(currentGear)">Destroy</button>
+              <button v-on:click.prevent="updateGear(currentGear)">Update</button>
+              <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
               <button>Close</button>
             </form>
           </dialog>
@@ -160,14 +160,20 @@ export default {
       };
       axios.patch("/api/gears/" + gear.id, params).then((response) => {
         console.log("Success", response.data);
+        this.gear.push(response.data);
       });
     },
     destroyGear: function (gear) {
-      axios.delete("/api/gears/" + gear.id).then((response) => {
-        console.log("Success!", response.data);
-        var index = this.gears.indexOf(gear);
-        this.gears.splice(index, 1);
-      });
+      if (confirm("Are you sure you want to delete this item?")) {
+        axios.delete("/api/gears/" + gear.id).then((response) => {
+          console.log("Success!", response.data);
+          var index = this.gears.indexOf(gear);
+          this.gears.splice(index, 1);
+        });
+      }
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
     },
   },
 };
