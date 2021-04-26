@@ -5,6 +5,7 @@
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
 
     <form>
+      {{ sumMessage }}
       {{ message }}
       <div class="gears-new">
         <form>
@@ -66,7 +67,7 @@
                 Url:
                 <input type="text" v-model="currentGear.item_url" />
               </p>
-              <button v-on:click.prevent="updateGear(currentGear)">Update</button>
+              <button v-on:click.prevent="updateGear(currentGear)" @click="$emit(`close`)">Update</button>
               <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
               <button>Close</button>
             </form>
@@ -96,13 +97,12 @@ export default {
       newGearUrl: "",
       currentGear: {},
       totalSum: "",
-      // sumMessage: `The total weight of your pack is ${this.weightSum()}`,
+      sumMessage: `The total weight of your pack is ${this.totalSum}`,
       // need to fix. why does user.name break everything
       message: `Welcome! ${this.user}`,
     };
   },
   created: function () {
-    // this.weightSum();
     this.showUser();
   },
 
