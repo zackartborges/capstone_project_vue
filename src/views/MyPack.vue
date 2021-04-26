@@ -86,7 +86,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      gears: [],
+      // gears: [],
       user: {},
       // gear: {},
       newGearName: "",
@@ -95,13 +95,17 @@ export default {
       newGearQuantity: "",
       newGearUrl: "",
       currentGear: {},
+      totalSum: "",
+      // sumMessage: `The total weight of your pack is ${this.weightSum()}`,
       // need to fix. why does user.name break everything
-      message: `Welcome! ${this.user} `,
+      message: `Welcome! ${this.user}`,
     };
   },
   created: function () {
+    // this.weightSum();
     this.showUser();
   },
+
   methods: {
     // submitForm() {
     //   var plotIsValid = this.form.newMoviePlot.length < 20;
@@ -121,7 +125,15 @@ export default {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
         console.log("user:", this.user);
+        this.totalSum = this.user.gear.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.totalSum);
       });
+
+      // item_weight.reduce(function (a, b) {
+      //   return a + b;
+      // }, 0);
     },
     // need to fix create gear id
     createGear: function () {
@@ -174,6 +186,16 @@ export default {
     },
     getUserId: function () {
       return localStorage.getItem("user_id");
+    },
+    weightSum: function () {
+      // axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+      //   this.user = response.data;
+      //   console.log()
+      // });
+      var sum = this.gear.item_weight.reduce(function (a, b) {
+        return a + b;
+      }, 0);
+      return sum;
     },
   },
 };
