@@ -20,6 +20,8 @@
           <input type="text" v-model="newGearQuantity" />
           Gear URL:
           <input type="text" v-model="newGearUrl" />
+          Category:
+          <input type="text" v-model="newGearCategory" />
           <button v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
       </div>
@@ -41,6 +43,8 @@
         <p>{{ gear.item_weight }} oz.</p>
         Quantity:
         <p>{{ gear.item_quantity }}</p>
+        Category:
+        <p>{{ gear.item_category }}</p>
         <button v-on:click="showGear(gear)">Edit!</button>
         <span class="edit-gear">
           <dialog id="gear-details">
@@ -65,6 +69,10 @@
               <p>
                 Url:
                 <input type="text" v-model="currentGear.item_url" />
+              </p>
+              <p>
+                Category:
+                <input type="text" v-model="currentGear.item_category" />
               </p>
               <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
               <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
@@ -94,6 +102,7 @@ export default {
       newGearWeight: "",
       newGearQuantity: "",
       newGearUrl: "",
+      newGearCategory: "",
       currentGear: {},
       totalSum: this.totalSum,
       sumMessage: `The total weight of your pack is ${this.totalSum}`,
@@ -144,6 +153,7 @@ export default {
         item_weight: this.newGearWeight,
         item_quantity: this.newGearQuantity,
         item_url: this.newGearUrl,
+        item_category: this.newGearCategory,
       };
       axios
         .post("/api/gears", params)
@@ -168,6 +178,7 @@ export default {
         item_weight: gear.item_weight,
         item_quantity: gear.item_quantity,
         item_url: gear.item_url,
+        item_category: gear.item_category,
       };
       axios.patch("/api/gears/" + gear.id, params).then((response) => {
         console.log("Success", response.data);
