@@ -128,7 +128,7 @@ export default {
         this.totalSum = this.user.gear.reduce(function (tot, arr) {
           return tot + arr.item_weight;
         }, 0);
-        console.log(this.totalSum);
+        console.log(this.totalSum.toFixed(2));
       });
 
       // item_weight.reduce(function (a, b) {
@@ -186,16 +186,6 @@ export default {
     },
     getUserId: function () {
       return localStorage.getItem("user_id");
-    },
-    weightSum: function () {
-      // axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
-      //   this.user = response.data;
-      //   console.log()
-      // });
-      var sum = this.gear.item_weight.reduce(function (a, b) {
-        return a + b;
-      }, 0);
-      return sum;
     },
   },
 };
