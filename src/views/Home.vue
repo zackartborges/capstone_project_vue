@@ -7,12 +7,12 @@
         backpacking or hiking)
       </p>
     </div>
-    <div class="buttons">
+    <!-- <div class="buttons">
       <router-link to="/signup" tag="button">Signup!</router-link>
       <br />
       <br />
       <router-link to="/login" tag="button">Click me for login</router-link>
-    </div>
+    </div> -->
     <p></p>
   </div>
 </template>

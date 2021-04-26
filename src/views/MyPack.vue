@@ -33,7 +33,6 @@
       <!-- if no gear, say this: -->
       <!-- <div v-if="gears.length === 0">Put In some Gear!</div> -->
       <div v-for="gear in user.gear" v-bind:key="gear.id">
-        <p>{{ gear.id }}</p>
         Name:
         <p>{{ gear.item_name }}</p>
         Description:
@@ -67,7 +66,7 @@
                 Url:
                 <input type="text" v-model="currentGear.item_url" />
               </p>
-              <button v-on:click.prevent="updateGear(currentGear)" @click="$emit(`close`)">Update</button>
+              <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
               <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
               <button>Close</button>
             </form>
@@ -96,7 +95,7 @@ export default {
       newGearQuantity: "",
       newGearUrl: "",
       currentGear: {},
-      totalSum: "",
+      totalSum: this.totalSum,
       sumMessage: `The total weight of your pack is ${this.totalSum}`,
       // need to fix. why does user.name break everything
       message: `Welcome! ${this.user}`,
