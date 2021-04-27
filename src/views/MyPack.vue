@@ -5,7 +5,7 @@
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
 
     <form>
-      {{ sumMessage }}
+      The total {{ user.name }} , {{ totalSum }}
       {{ message }}
       <div class="gears-new">
         <form>
@@ -97,6 +97,7 @@ export default {
       // gears: [],
       user: {},
       // gear: {},
+      currentUser: this.user,
       newGearName: "",
       newGearDescription: "",
       newGearWeight: "",
@@ -105,9 +106,9 @@ export default {
       newGearCategory: "",
       currentGear: {},
       totalSum: this.totalSum,
-      sumMessage: `The total weight of your pack is ${this.totalSum}`,
+      sumMessage: "The total weight of your pack is {{this.totalSum}} ",
       // need to fix. why does user.name break everything
-      message: `Welcome! ${this.user}`,
+      message: `Welcome! ${this.currentUser}`,
     };
   },
   created: function () {

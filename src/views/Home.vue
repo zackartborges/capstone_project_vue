@@ -13,7 +13,6 @@
       <br />
       <router-link to="/login" tag="button">Click me for login</router-link>
     </div> -->
-    <p></p>
   </div>
 </template>
 
