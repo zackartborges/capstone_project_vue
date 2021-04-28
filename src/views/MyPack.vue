@@ -21,7 +21,8 @@
           Gear URL:
           <input type="text" v-model="newGearUrl" />
           Category:
-          <input type="text" v-model="newGearCategory" />
+          <dropdown :options="arrayOfObjects" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
+
           <button v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
       </div>
@@ -168,6 +169,7 @@
 
 <script>
 import axios from "axios";
+import dropdown from "vue-dropdowns";
 
 export default {
   data: function () {
@@ -176,6 +178,8 @@ export default {
       user: {},
       // gear: {},
       currentUser: this.user,
+      arrayOfCategories: [],
+      category: {},
       newGearName: "",
       newGearDescription: "",
       newGearWeight: "",
