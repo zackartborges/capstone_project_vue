@@ -5,8 +5,7 @@
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
 
     <form>
-      The total {{ user.name }} , {{ totalSum.toFixed(2) }}
-      {{ message }}
+      The total {{ user.name }} , {{ totalSum }}
       <div class="gears-new">
         <form>
           <!-- text boxes for newGear -->
@@ -21,7 +20,7 @@
           Gear URL:
           <input type="text" v-model="newGearUrl" />
           Category:
-          <dropdown :options="arrayOfObjects" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
+          <!-- <dropdown :options="arrayOfObjects" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown> -->
 
           <button v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
@@ -35,7 +34,7 @@
     <div class="my-pack">
       <!-- if no gear, say this: -->
       <!-- <div v-if="gears.length === 0">Put In some Gear!</div> -->
-      <div v-for="gear in user.gear" v-bind:key="gear.id">
+      <div v-for="gear in user.gears" v-bind:key="gear.id">
         Name:
         <p>{{ gear.item_name }}</p>
         Description:
@@ -169,7 +168,7 @@
 
 <script>
 import axios from "axios";
-import dropdown from "vue-dropdowns";
+// import dropdown from "vue-dropdowns";
 
 export default {
   data: function () {
@@ -179,7 +178,7 @@ export default {
       // gear: {},
       currentUser: this.user,
       arrayOfCategories: [],
-      category: {},
+      categories: {},
       newGearName: "",
       newGearDescription: "",
       newGearWeight: "",
@@ -188,9 +187,7 @@ export default {
       newGearCategory: "",
       currentGear: {},
       totalSum: this.totalSum,
-      sumMessage: "The total weight of your pack is {{this.totalSum}} ",
       // need to fix. why does user.name break everything
-      message: `Welcome! ${this.currentUser}`,
     };
   },
   created: function () {
@@ -216,9 +213,9 @@ export default {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
         console.log("user:", this.user);
-        this.totalSum = this.user.gear.reduce(function (tot, arr) {
-          return tot + arr.item_weight;
-        }, 0);
+        // this.totalSum = this.user.gear.reduce(function (tot, arr) {
+        //   return tot + arr.item_weight;
+        // }, 0);
         console.log(this.totalSum.toFixed(2));
       });
 
