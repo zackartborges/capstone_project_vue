@@ -1,6 +1,6 @@
 <template>
   <div class="example">
-    <div v-for="gear in user.gear" :key="gear.id">
+    <div v-for="gear in user.gears" :key="gear.id">
       <p>{{ gear.id }}</p>
       Name:
       <p>{{ gear.item_name }}</p>
@@ -10,6 +10,8 @@
       <p>{{ gear.item_weight }} oz.</p>
       Quantity:
       <p>{{ gear.item_quantity }}</p>
+      Category:
+      <p>{{ gear.item_category[0] }}</p>
       <hr />
       <!-- <p>{{ pack.gear.description }}</p>
       <p>{{ pack.gear.weight }}</p> -->
