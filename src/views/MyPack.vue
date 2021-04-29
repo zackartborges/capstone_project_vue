@@ -5,7 +5,7 @@
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
 
     <form>
-      The total {{ user.name }} , {{ totalSum }}
+      The total {{ user.name }} , {{ totalSum.toFixed(2) }}
       <div class="gears-new">
         <form>
           <!-- text boxes for newGear -->
@@ -44,7 +44,7 @@
         Quantity:
         <p>{{ gear.item_quantity }}</p>
         Category:
-        <p>{{ gear.item_category }}</p>
+        <p>{{ gear.item_category[0] }}</p>
         <button v-on:click="showGear(gear)">Edit!</button>
         <span class="edit-gear">
           <dialog id="gear-details">
@@ -213,9 +213,9 @@ export default {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
         console.log("user:", this.user);
-        // this.totalSum = this.user.gear.reduce(function (tot, arr) {
-        //   return tot + arr.item_weight;
-        // }, 0);
+        this.totalSum = this.user.gears.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
         console.log(this.totalSum.toFixed(2));
       });
 
