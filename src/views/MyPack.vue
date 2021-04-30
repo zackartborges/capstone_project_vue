@@ -73,8 +73,18 @@
           Gear URL:
           <input type="text" v-model="newGearUrl" />
           Category:
-          <!-- <dropdown :options="arrayOfObjects" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown> -->
-
+          <!-- dropdown menu for categories -->
+          <select class="category-choice" id="category-select">
+            <option disabled selected value>-- select an option --</option>
+            <option>Sleep System</option>
+            <option>Water System</option>
+            <option>Cookware</option>
+            <option>Toiletries</option>
+            <option>Electronics</option>
+            <option>Clothing</option>
+            <option>Consumables</option>
+            <option>Uncategorized</option>
+          </select>
           <button v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
       </div>
@@ -108,18 +118,20 @@
 
       <br />
 
-      <table id="thirdTable">
+      <!-- attempt at sorting the table -->
+      <!-- <table id="thirdTable">
         <thead>
           <tr>
-            <th v-for="col in columns" v-on:click="sortTable(col)">{{ col }}</th>
+            <th v-for="col in columns" v-bind:key="col.id" v-on:click="sortTable(col)">{{ col }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in rows">
-            <td v-for="col in columns">{{ row[col] }}</td>
+          <tr v-for="gear in user.gears" v-bind:key="gear.id">
+            <td v-for="col in columns" v-bind:key="col.id">{{ row[col] }}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
+
       <!--- <div v-for="gear in user.gears" v-bind:key="gear.id">
         Name:
         <p>{{ gear.item_name }}</p>
@@ -271,13 +283,21 @@ export default {
       newGearCategory: "",
       currentGear: {},
       totalSum: this.totalSum,
+      columns: "",
       // need to fix. why does user.name break everything
     };
   },
   created: function () {
     this.showUser();
   },
-
+  // computed: {
+  //   columns: function columns() {
+  //     if (this.user.gears.length === 0) {
+  //       return [];
+  //     }
+  //     return Object.keys(this.rows[0]);
+  //   },
+  // },
   methods: {
     // submitForm() {
     //   var plotIsValid = this.form.newMoviePlot.length < 20;
@@ -361,16 +381,16 @@ export default {
     getUserId: function () {
       return localStorage.getItem("user_id");
     },
-    sortTable: function sortTable(col) {
-      this.rows.sort(function (a, b) {
-        if (a[col] > b[col]) {
-          return 1;
-        } else if (a[col] < b[col]) {
-          return -1;
-        }
-        return 0;
-      });
-    },
+    // sortTable: function sortTable(col) {
+    //   this.rows.sort(function (a, b) {
+    //     if (a[col] > b[col]) {
+    //       return 1;
+    //     } else if (a[col] < b[col]) {
+    //       return -1;
+    //     }
+    //     return 0;
+    //   });
+    // },
   },
 };
 </script>
