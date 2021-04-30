@@ -63,18 +63,18 @@
         <form>
           <!-- text boxes for newGear -->
           Name:
-          <input type="text" v-model="newGearName" />
+          <input type="text" class="form-control" v-model="newGearName" />
           Description:
-          <input type="text" v-model="newGearDescription" />
+          <input type="text" class="form-control" v-model="newGearDescription" />
           Weight:
-          <input type="text" v-model="newGearWeight" />
+          <input type="text" class="form-control" v-model="newGearWeight" />
           Quantity:
-          <input type="text" v-model="newGearQuantity" />
+          <input type="text" class="form-control" v-model="newGearQuantity" />
           Gear URL:
-          <input type="text" v-model="newGearUrl" />
+          <input type="text" class="form-control" v-model="newGearUrl" />
           Category:
           <!-- dropdown menu for categories -->
-          <select class="category-choice" id="category-select">
+          <select class="form-select" id="category-select" v-model="newGearCategory">
             <option disabled selected value>-- select an option --</option>
             <option>Sleep System</option>
             <option>Water System</option>
