@@ -85,9 +85,42 @@
     </form>
     <!-- for loop -->
     <div class="my-pack">
-      <!-- if no gear, say this: -->
-      <!-- <div v-if="gears.length === 0">Put In some Gear!</div> -->
-      <div v-for="gear in user.gears" v-bind:key="gear.id">
+      <table id="firstTable">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Item Description</th>
+            <th>Item Weight</th>
+            <th>Item Quantity</th>
+            <th>Item Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="gear in user.gears" v-bind:key="gear.id">
+            <td>{{ gear.item_name }}</td>
+            <td>{{ gear.item_description }}</td>
+            <td>{{ gear.item_weight }}</td>
+            <td>{{ gear.item_quantity }}</td>
+            <td>{{ gear.item_category[0].name }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />
+
+      <table id="thirdTable">
+        <thead>
+          <tr>
+            <th v-for="col in columns" v-on:click="sortTable(col)">{{ col }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in rows">
+            <td v-for="col in columns">{{ row[col] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--- <div v-for="gear in user.gears" v-bind:key="gear.id">
         Name:
         <p>{{ gear.item_name }}</p>
         Description:
@@ -97,7 +130,7 @@
         Quantity:
         <p>{{ gear.item_quantity }}</p>
         Category:
-        <p>{{ gear.item_category[0] }}</p>
+        <p>{{ gear.item_category[0].name }}</p>
         <button v-on:click="showGear(gear)">Edit!</button>
         <span class="edit-gear">
           <dialog id="gear-details">
@@ -133,10 +166,8 @@
             </form>
           </dialog>
         </span>
-        <hr />
-        <!-- <p>{{ pack.gear.description }}</p>
-      <p>{{ pack.gear.weight }}</p> -->
-      </div>
+        <hr /> 
+      </div> -->
     </div>
     <!-- Project Card Example -->
     <!-- <div class="card shadow mb-4">
@@ -329,6 +360,16 @@ export default {
     },
     getUserId: function () {
       return localStorage.getItem("user_id");
+    },
+    sortTable: function sortTable(col) {
+      this.rows.sort(function (a, b) {
+        if (a[col] > b[col]) {
+          return 1;
+        } else if (a[col] < b[col]) {
+          return -1;
+        }
+        return 0;
+      });
     },
   },
 };
