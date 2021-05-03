@@ -5,7 +5,7 @@
     <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
 
     <form>
-      The total {{ user.name }} , {{ totalSum.toFixed(2) }}
+      Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }}.
       <!-- Pie Chart -->
       <div class="col-xl-4 col-lg-5">
         <div class="card shadow mb-4">
@@ -108,7 +108,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="gear in user.gears" v-bind:key="gear.id">
+          <!-- user.gears.categories[0].name -->
+          <tr v-for="gear in filterBy(user.gears, 'Sleep System', user.gears.categories[0].name)" v-bind:key="gear.id">
             <td>{{ gear.item_category[0].name }}</td>
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -209,7 +210,8 @@
           </tr>
         </tbody>
       </table>
-      <h1>Cookware and Filtration</h1>
+
+      <!-- <h1>Cookware and Filtration</h1>
       <table id="firstTable">
         <thead>
           <tr>
@@ -320,7 +322,7 @@
             </span>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
       <!-- attempt at sorting the table -->
       <!-- <table id="thirdTable">
