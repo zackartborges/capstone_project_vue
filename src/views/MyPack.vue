@@ -109,7 +109,7 @@
         </thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
-          <tr v-for="gear in filterBy(user.gears, 'Sleep System', user.gears.categories[0].name)" v-bind:key="gear.id">
+          <tr v-for="gear in filterBy(gears, 'Sleep', 'item_category')" v-bind:key="gear.id">
             <td>{{ gear.item_category[0].name }}</td>
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -154,7 +154,7 @@
         </tbody>
       </table>
 
-      <h1>Clothing</h1>
+      <!-- <h1>Clothing</h1>
       <table id="firstTable">
         <thead>
           <tr>
@@ -209,7 +209,7 @@
             </span>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
       <!-- <h1>Cookware and Filtration</h1>
       <table id="firstTable">
@@ -502,6 +502,7 @@ export default {
       newGearCategory: "",
       currentGear: {},
       totalSum: this.totalSum,
+      gears: [],
       // need to fix. why does user.name break everything
     };
   },
@@ -533,7 +534,8 @@ export default {
     showUser: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
-        console.log("user:", this.user);
+        this.gears = this.user.gears;
+        console.log("user:", this.gears);
         this.totalSum = this.user.gears.reduce(function (tot, arr) {
           return tot + arr.item_weight;
         }, 0);
