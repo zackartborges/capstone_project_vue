@@ -1,9 +1,5 @@
 <template>
   <div id="my-pack">
-    <!-- Need to create current user = to only display pack of who is logged in -->
-    <!-- form for input for new gear -->
-    <!-- @submit.prevent="submitForm" not 100% sure how to figure validation out, commented out -->
-
     <form>
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }}.
 
@@ -67,7 +63,7 @@
         </thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
-          <tr v-for="gear in orderBy(gears, 'item_category')" v-bind:key="gear.id">
+          <tr v-for="gear in orderBy(gears, 'Big 3', 'item_category')" v-bind:key="gear.id">
             <td>{{ gear.item_category[0].name }}</td>
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -216,6 +212,7 @@
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
                   </p>
+                  <!-- add in a line to display the catagory total weight -->
                   <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
                   <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
                   <button>Close</button>
@@ -282,8 +279,8 @@
         </tbody>
       </table>
 
-      <h2>Repair and Med-Kit</h2>
       <table id="repair-medkit">
+        <h2>Repair and Med-Kit</h2>
         <thead>
           <!-- <tr>
             <th>Item Category</th>
@@ -394,9 +391,9 @@
           </tr>
         </tbody>
       </table>
-      <!-- <span v-if=""> -->
-      <h2>Toiletries</h2>
+
       <table id="toiletries">
+        <h2>Toiletries</h2>
         <thead>
           <!-- <tr>
             <th>Item Category</th>
@@ -408,6 +405,7 @@
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Toiletries', 'item_category')" v-bind:key="gear.id">
+            <!-- <div v-if="gears"> -->
             <td>{{ gear.item_category[0].name }}</td>
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -448,7 +446,9 @@
                 </form>
               </dialog>
             </span>
+            <!-- </div> -->
           </tr>
+          <!-- <div v:else>There are no toiletries.</div> -->
         </tbody>
       </table>
       <!-- </span> -->
@@ -661,6 +661,7 @@ td {
   border-bottom: 1px solid #ddd;
   /* border: ridge; */
   padding: 5px;
+  /* width: 100%; */
 }
 </style>
 
@@ -676,7 +677,7 @@ Vue.use(Vue2Filters);
 
 export default {
   components: {
-    apexchart: VueApexCharts,
+    // apexchart: VueApexCharts,
   },
   mixins: [Vue2Filters.mixin],
   data: function () {
@@ -695,34 +696,33 @@ export default {
       currentGear: {},
       totalSum: this.totalSum,
       gears: [],
+      bigSum: "",
+      bigThree: [],
       chartOptions: {
         chart: {
           width: 380,
-          type: 'donut',
+          type: "donut",
         },
-        dataLabels: {
-          enabled:false
+        dataLabels: false,
       },
-      responsive: [{
-              breakpoint: 480,
-              options: {
-                chart: {
-                  width: 200
-                },
-                legend: {
-                  show: false
-                }
-              }
-            }],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
             legend: {
-              position: 'right',
-              offsetY: 0,
-              height: 230,
-      // need to fix. why does user.name break everything
-    },
+              position: "bottom",
+            },
+          },
+        },
+      ],
+    };
   },
   created: function () {
     this.showUser();
+    this.categorySum();
   },
   // computed: {
   //   PackAndShelter: function () {
@@ -760,6 +760,19 @@ export default {
       // item_weight.reduce(function (a, b) {
       //   return a + b;
       // }, 0);
+    },
+    categorySum: function () {
+      axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+        this.user = response.data;
+        this.gears = this.user.gears;
+        console.log("user:", this.gears);
+        this.bigThree = this.user.gears.filter((gear) => this.user.gears.item_category[0].name == "Big 3 + Sleep Pad");
+        console.log(this.bigThree);
+        // this.categorySum = this.user.gears.reduce(function (tot, arr) {
+        //   return tot + arr.item_weight;
+        // }, 0);
+        console.log(this.totalSum.toFixed(2));
+      });
     },
     // need to fix create gear id
     createGear: function () {
