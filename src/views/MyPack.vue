@@ -96,16 +96,25 @@
     <hr />
     <!-- for loop -->
     <div class="my-pack">
+      <tr>
+        <th>Item Category</th>
+        <br />
+        <th>Item Name</th>
+        <br />
+        <th>Item Description</th>
+        <th>Item Weight</th>
+        <th>Item Quantity</th>
+      </tr>
       <h2>Big 3 + Sleeping Pad</h2>
       <table id="big-3">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
@@ -157,13 +166,13 @@
       <h2>Clothing</h2>
       <table id="clothing">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Clothing', 'item_category')" v-bind:key="gear.id">
@@ -214,13 +223,13 @@
       <h2>Cookware and Filtration</h2>
       <table id="cookware-filtration">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Cookware', 'item_category')" v-bind:key="gear.id">
@@ -270,13 +279,13 @@
       <h2>Electronics</h2>
       <table id="electronics">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Electronics', 'item_category')" v-bind:key="gear.id">
@@ -327,13 +336,13 @@
       <h2>Repair and Med-Kit</h2>
       <table id="repair-medkit">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Repair', 'item_category')" v-bind:key="gear.id">
@@ -383,13 +392,13 @@
       <h2>Shoes</h2>
       <table id="shoes">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Shoes', 'item_category')" v-bind:key="gear.id">
@@ -440,13 +449,13 @@
       <h2>Toiletries</h2>
       <table id="toiletries">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Toiletries', 'item_category')" v-bind:key="gear.id">
@@ -496,13 +505,13 @@
       <h2>Misc.</h2>
       <table id="misc">
         <thead>
-          <tr>
+          <!-- <tr>
             <th>Item Category</th>
             <th>Item Name</th>
             <th>Item Description</th>
             <th>Item Weight</th>
             <th>Item Quantity</th>
-          </tr>
+          </tr> -->
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Misc.', 'item_category')" v-bind:key="gear.id">
