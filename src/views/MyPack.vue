@@ -6,58 +6,7 @@
 
     <form>
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }}.
-      <!-- Pie Chart -->
-      <div class="col-xl-4 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Pack Weight Distribution</h6>
-            <div class="dropdown no-arrow">
-              <a
-                class="dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-              </a>
-              <div
-                class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                aria-labelledby="dropdownMenuLink"
-              >
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-pie pt-4 pb-2">
-              <canvas id="myPieChart"></canvas>
-            </div>
-            <div class="mt-4 text-center small">
-              <span class="mr-2">
-                <i class="fas fa-circle text-primary"></i>
-                Direct
-              </span>
-              <span class="mr-2">
-                <i class="fas fa-circle text-success"></i>
-                Social
-              </span>
-              <span class="mr-2">
-                <i class="fas fa-circle text-info"></i>
-                Referral
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- </div> -->
       <div class="gears-new">
         <form>
@@ -118,7 +67,7 @@
         </thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
-          <tr v-for="gear in filterBy(gears, 'Big 3', 'item_category')" v-bind:key="gear.id">
+          <tr v-for="gear in orderBy(gears, 'item_category')" v-bind:key="gear.id">
             <td>{{ gear.item_category[0].name }}</td>
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -445,7 +394,7 @@
           </tr>
         </tbody>
       </table>
-
+      <!-- <span v-if=""> -->
       <h2>Toiletries</h2>
       <table id="toiletries">
         <thead>
@@ -502,6 +451,7 @@
           </tr>
         </tbody>
       </table>
+      <!-- </span> -->
       <h2>Misc.</h2>
       <table id="misc">
         <thead>
@@ -708,10 +658,14 @@
 }
 
 td {
-  border-bottom: 1px solid black;
-  border: ridge;
+  border-bottom: 1px solid #ddd;
+  /* border: ridge; */
+  padding: 5px;
 }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+;
 <script>
 import axios from "axios";
 import Vue from "vue";
@@ -721,6 +675,9 @@ Vue.use(Vue2Filters);
 // import dropdown from "vue-dropdowns";
 
 export default {
+  components: {
+    apexchart: VueApexCharts,
+  },
   mixins: [Vue2Filters.mixin],
   data: function () {
     return {
@@ -738,8 +695,31 @@ export default {
       currentGear: {},
       totalSum: this.totalSum,
       gears: [],
+      chartOptions: {
+        chart: {
+          width: 380,
+          type: 'donut',
+        },
+        dataLabels: {
+          enabled:false
+      },
+      responsive: [{
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 200
+                },
+                legend: {
+                  show: false
+                }
+              }
+            }],
+            legend: {
+              position: 'right',
+              offsetY: 0,
+              height: 230,
       // need to fix. why does user.name break everything
-    };
+    },
   },
   created: function () {
     this.showUser();
