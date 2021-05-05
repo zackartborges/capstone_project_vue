@@ -22,14 +22,14 @@
           <!-- dropdown menu for categories -->
           <select class="form-select" id="category-select" v-model="newGearCategory">
             <option disabled selected value>-- select an option --</option>
-            <option>Sleep System</option>
-            <option>Water System</option>
-            <option>Cookware</option>
-            <option>Toiletries</option>
-            <option>Electronics</option>
-            <option>Clothing</option>
-            <option>Consumables</option>
-            <option>Uncategorized</option>
+            <option value="29">Big 3 + Sleeping Pad</option>
+            <option value="21">Clothing</option>
+            <option value="22">Cookware and Filtration</option>
+            <option value="23">Electronics</option>
+            <option value="25">Repair and Med-Kit</option>
+            <option value="26">Shoes</option>
+            <option value="24">Toiletries</option>
+            <option value="27">Misc.</option>
           </select>
           <button v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
@@ -836,7 +836,7 @@ export default {
         item_weight: this.newGearWeight,
         item_quantity: this.newGearQuantity,
         item_url: this.newGearUrl,
-        item_category: this.newGearCategory,
+        category_id: this.newGearCategory,
       };
       axios
         .post("/api/gears", params)
@@ -848,6 +848,19 @@ export default {
           console.log(error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    createGearCategoryJoin: function () {
+      console.log("creating category join..");
+      var params = {
+        gear_id: this.gear.id,
+        category_id: this.value,
+      };
+      axios
+        .post("/api/category_join", params)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => console.log(error.response));
     },
     showGear: function (gear) {
       console.log(gear);
