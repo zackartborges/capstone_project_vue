@@ -1,5 +1,9 @@
 <template>
   <div id="my-pack">
+    <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
+    <!-- <div id="chart">
+      <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
+    </div> -->
     <form>
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }}.
 
@@ -508,69 +512,6 @@
           </tr>
         </tbody>
       </table>
-
-      <!-- attempt at sorting the table -->
-      <!-- <table id="thirdTable">
-        <thead>
-          <tr>
-            <th v-for="col in columns" v-bind:key="col.id" v-on:click="sortTable(col)">{{ col }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="gear in user.gears" v-bind:key="gear.id">
-            <td v-for="col in columns" v-bind:key="col.id">{{ row[col] }}</td>
-          </tr>
-        </tbody>
-      </table> -->
-
-      <!--- <div v-for="gear in user.gears" v-bind:key="gear.id">
-        Name:
-        <p>{{ gear.item_name }}</p>
-        Description:
-        <p>{{ gear.item_description }}</p>
-        Weight:
-        <p>{{ gear.item_weight }} oz. oz.</p>
-        Quantity:
-        <p>{{ gear.item_quantity }}</p>
-        Category:
-        <p>{{ gear.item_category[0].name }}</p>
-        <button v-on:click="showGear(gear)">Edit!</button>
-        <span class="edit-gear">
-          <dialog id="gear-details">
-            <form method="dialog">
-              <h2>Gear Info</h2>
-              <p>
-                Name:
-                <input type="text" v-model="currentGear.item_name" />
-              </p>
-              <p>
-                Description:
-                <input type="text" v-model="currentGear.item_description" />
-              </p>
-              <p>
-                Weight:
-                <input type="text" v-model="currentGear.item_weight" />
-              </p>
-              <p>
-                Quantity:
-                <input type="text" v-model="currentGear.item_quantity" />
-              </p>
-              <p>
-                Url:
-                <input type="text" v-model="currentGear.item_url" />
-              </p>
-              <p>
-                Category:
-                <input type="text" v-model="currentGear.item_category" />
-              </p>
-              <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
-              <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
-              <button>Close</button>
-            </form>
-          </dialog>
-        </span>
-        <hr /> 
-      </div> -->
     </div>
     <!-- Project Card Example -->
     <!-- <div class="card shadow mb-4">
@@ -650,6 +591,7 @@
         </div>
       </div>
     </div> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
   </div>
 </template>
 <style>
@@ -665,11 +607,10 @@ td {
 }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-;
 <script>
 import axios from "axios";
 import Vue from "vue";
+// import ApexCharts from "apexcharts";
 import Vue2Filters from "vue2-filters";
 
 Vue.use(Vue2Filters);
@@ -677,7 +618,7 @@ Vue.use(Vue2Filters);
 
 export default {
   components: {
-    // apexchart: VueApexCharts,
+    // apexchart: ApexCharts,
   },
   mixins: [Vue2Filters.mixin],
   data: function () {
@@ -713,26 +654,41 @@ export default {
       shelterSum: this.shelterSum,
       shoesSum: this.shoesSum,
       toiletriesSum: this.toiletriesSum,
-      chartOptions: {
+      // series: [this.bigThreeSum, this.clothingSum],
+      options: {
         chart: {
-          width: 380,
-          type: "donut",
+          id: "vuechart-example",
         },
-        dataLabels: false,
+        xaxis: {
+          categories: [this.shelterSum, "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+        },
       },
-      responsive: [
+      series: [
         {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: "bottom",
-            },
-          },
+          name: "series-1",
+          data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139],
         },
       ],
+      // chartOptions: {
+      //   chart: {
+      //     width: 380,
+      //     type: "donut",
+      //   },
+      //   dataLabels: false,
+      // },
+      // responsive: [
+      //   {
+      //     breakpoint: 480,
+      //     options: {
+      //       chart: {
+      //         width: 200,
+      //       },
+      //       legend: {
+      //         position: "bottom",
+      //       },
+      //     },
+      //   },
+      // ],
     };
   },
   created: function () {
@@ -782,8 +738,8 @@ export default {
         this.user = response.data;
         this.gears = this.user.gears;
         // console.log("user:", this.gears);
-        this.bigThree = this.user.gears.filter((gear) => gear.category_id == 29);
-        console.log(this.bigThree);
+        this.shelter = this.user.gears.filter((gear) => gear.category_id == 29);
+        console.log(this.shelter);
         this.clothing = this.user.gears.filter((gear) => gear.category_id == 21);
         console.log(this.clothing);
         this.cookware = this.user.gears.filter((gear) => gear.category_id == 22);
@@ -801,10 +757,10 @@ export default {
         this.toiletries = this.user.gears.filter((gear) => gear.category_id == 24);
         console.log(this.toiletries);
 
-        this.bigThreeSum = this.bigThree.reduce(function (tot, arr) {
+        this.shelterSum = this.shelter.reduce(function (tot, arr) {
           return tot + arr.item_weight;
         }, 0);
-        console.log(this.bigThreeSum);
+        console.log(this.shelterSum);
 
         this.clothingSum = this.clothing.reduce(function (tot, arr) {
           return tot + arr.item_weight;

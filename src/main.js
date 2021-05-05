@@ -4,6 +4,8 @@ import router from "./router";
 import axios from "axios";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 // import ApexCharts from "apexcharts";
+import "@/plugins/apexcharts";
+
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
