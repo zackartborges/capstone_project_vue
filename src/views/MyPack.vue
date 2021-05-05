@@ -1,9 +1,6 @@
 <template>
   <div id="my-pack">
-    <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
-    <!-- <div id="chart">
-      <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
-    </div> -->
+    <!-- <apexchart width="500" type="bar" :options="options" :series="series"></apexchart> -->
     <form>
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }}.
 
@@ -67,7 +64,7 @@
         </thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
-          <tr v-for="gear in orderBy(gears, 'Big 3', 'item_category')" v-bind:key="gear.id">
+          <tr v-for="gear in filterBy(gears, 'Big 3', 'item_category')" v-bind:key="gear.id">
             <td>{{ gear.item_category[0].name }}</td>
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -618,6 +615,7 @@ Vue.use(Vue2Filters);
 
 export default {
   components: {
+    // ApexCharts: () => import("@/plugins/apexchart"),
     // apexchart: ApexCharts,
   },
   mixins: [Vue2Filters.mixin],
@@ -646,14 +644,15 @@ export default {
       shelter: [],
       shoes: [],
       toiletries: [],
-      clothingSum: this.clothingSum,
-      cookwareSum: this.cookwareSum,
-      electronicsSum: this.electronicsSum,
-      miscSum: this.miscSum,
-      repairSum: this.repairSum,
-      shelterSum: this.shelterSum,
-      shoesSum: this.shoesSum,
-      toiletriesSum: this.toiletriesSum,
+      clothingSum: "",
+      cookwareSum: "",
+      electronicsSum: "",
+      miscSum: "",
+      repairSum: "",
+      shelterSum: "",
+      shoesSum: "",
+      toiletriesSum: "",
+
       // series: [this.bigThreeSum, this.clothingSum],
       options: {
         chart: {
@@ -676,13 +675,20 @@ export default {
         {
           name: "series-1",
           data: [
+            // 20,
+            // 15,
+            // 17,
+            // 8,
+            // 5,
+            // 99,
+            // 34,
+            // 67,
             this.shelterSum,
             this.clothingSum,
             this.cookwareSum,
             this.electronicsSum,
             this.miscSum,
             this.repairSum,
-            this.shelterSum,
             this.shoesSum,
             this.toiletriesSum,
           ],
@@ -752,6 +758,9 @@ export default {
       //   return a + b;
       // }, 0);
     },
+    // loadGraph: function() {
+
+    // },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
@@ -805,11 +814,6 @@ export default {
           return tot + arr.item_weight;
         }, 0);
         console.log(this.repairSum);
-
-        this.shelterSum = this.shelter.reduce(function (tot, arr) {
-          return tot + arr.item_weight;
-        }, 0);
-        console.log(this.shelterSum);
 
         this.shoesSum = this.shoes.reduce(function (tot, arr) {
           return tot + arr.item_weight;
