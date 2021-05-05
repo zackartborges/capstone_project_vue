@@ -660,13 +660,32 @@ export default {
           id: "vuechart-example",
         },
         xaxis: {
-          categories: [this.shelterSum, "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+          categories: [
+            "Big 3 + Shelter",
+            "Clothing",
+            "Cookware",
+            "Electronics",
+            "Misc.",
+            "Repair + Med Kit",
+            "Shoes",
+            "Toiletries",
+          ],
         },
       },
       series: [
         {
           name: "series-1",
-          data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139],
+          data: [
+            this.shelterSum,
+            this.clothingSum,
+            this.cookwareSum,
+            this.electronicsSum,
+            this.miscSum,
+            this.repairSum,
+            this.shelterSum,
+            this.shoesSum,
+            this.toiletriesSum,
+          ],
         },
       ],
       // chartOptions: {
