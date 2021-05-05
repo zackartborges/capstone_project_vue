@@ -696,8 +696,23 @@ export default {
       currentGear: {},
       totalSum: this.totalSum,
       gears: [],
-      bigSum: "",
+      clothing: [],
       bigThree: [],
+      cookware: [],
+      electronics: [],
+      misc: [],
+      repair: [],
+      shelter: [],
+      shoes: [],
+      toiletries: [],
+      clothingSum: this.clothingSum,
+      cookwareSum: this.cookwareSum,
+      electronicsSum: this.electronicsSum,
+      miscSum: this.miscSum,
+      repairSum: this.repairSum,
+      shelterSum: this.shelterSum,
+      shoesSum: this.shoesSum,
+      toiletriesSum: this.toiletriesSum,
       chartOptions: {
         chart: {
           width: 380,
@@ -749,6 +764,7 @@ export default {
     showUser: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
+        console.log(response.data);
         this.gears = this.user.gears;
         console.log("user:", this.gears);
         this.totalSum = this.user.gears.reduce(function (tot, arr) {
@@ -765,13 +781,70 @@ export default {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
         this.gears = this.user.gears;
-        console.log("user:", this.gears);
-        this.bigThree = this.user.gears.filter((gear) => this.user.gears.item_category[0].name == "Big 3 + Sleep Pad");
+        // console.log("user:", this.gears);
+        this.bigThree = this.user.gears.filter((gear) => gear.category_id == 29);
         console.log(this.bigThree);
-        // this.categorySum = this.user.gears.reduce(function (tot, arr) {
-        //   return tot + arr.item_weight;
-        // }, 0);
-        console.log(this.totalSum.toFixed(2));
+        this.clothing = this.user.gears.filter((gear) => gear.category_id == 21);
+        console.log(this.clothing);
+        this.cookware = this.user.gears.filter((gear) => gear.category_id == 22);
+        console.log(this.cookware);
+        this.electronics = this.user.gears.filter((gear) => gear.category_id == 23);
+        console.log(this.electronics);
+        this.misc = this.user.gears.filter((gear) => gear.category_id == 27);
+        console.log(this.misc);
+        this.repair = this.user.gears.filter((gear) => gear.category_id == 25);
+        console.log(this.repair);
+        this.shelter = this.user.gears.filter((gear) => gear.category_id == 28);
+        console.log(this.shelter);
+        this.shoes = this.user.gears.filter((gear) => gear.category_id == 26);
+        console.log(this.shoes);
+        this.toiletries = this.user.gears.filter((gear) => gear.category_id == 24);
+        console.log(this.toiletries);
+
+        this.bigThreeSum = this.bigThree.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.bigThreeSum);
+
+        this.clothingSum = this.clothing.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.clothingSum);
+
+        this.cookwareSum = this.cookware.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.cookwareSum);
+
+        this.electronicsSum = this.electronics.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.electronicsSum);
+
+        this.miscSum = this.misc.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.miscSum);
+
+        this.repairSum = this.repair.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.repairSum);
+
+        this.shelterSum = this.shelter.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.shelterSum);
+
+        this.shoesSum = this.shoes.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.shoesSum);
+
+        this.toiletriesSum = this.toiletries.reduce(function (tot, arr) {
+          return tot + arr.item_weight;
+        }, 0);
+        console.log(this.toiletriesSum);
       });
     },
     // need to fix create gear id
