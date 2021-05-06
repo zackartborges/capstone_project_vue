@@ -1,8 +1,9 @@
 <template>
   <div id="my-pack">
-    <!-- <apexchart width="500" type="bar" :options="options" :series="series"></apexchart> -->
+    <!-- <button type="button class" class="btn btn-success"></button> -->
+    <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
     <form>
-      Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }}.
+      Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }} oz.
 
       <!-- </div> -->
       <div class="gears-new">
@@ -12,7 +13,7 @@
           <input type="text" class="form-control" v-model="newGearName" />
           Description:
           <input type="text" class="form-control" v-model="newGearDescription" />
-          Weight:
+          Weight (oz.):
           <input type="text" class="form-control" v-model="newGearWeight" />
           Quantity:
           <input type="text" class="form-control" v-model="newGearQuantity" />
@@ -20,7 +21,7 @@
           <input type="text" class="form-control" v-model="newGearUrl" />
           Category:
           <!-- dropdown menu for categories -->
-          <select class="form-select" id="category-select" v-model="newGearCategory">
+          <select class="form-control" id="exampleFormControlSelect1" v-model="newGearCategory">
             <option disabled selected value>-- select an option --</option>
             <option value="29">Big 3 + Sleeping Pad</option>
             <option value="21">Clothing</option>
@@ -31,6 +32,7 @@
             <option value="24">Toiletries</option>
             <option value="27">Misc.</option>
           </select>
+          <br />
           <button type="button" class="btn btn-success" v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
       </div>
@@ -606,6 +608,8 @@ td {
   /* border: ridge; */
   padding: 5px;
   /* width: 100%; */
+  table-layout: fixed;
+  width: 500px;
 }
 </style>
 
@@ -649,14 +653,14 @@ export default {
       shelter: [],
       shoes: [],
       toiletries: [],
-      clothingSum: "",
-      cookwareSum: "",
-      electronicsSum: "",
-      miscSum: "",
-      repairSum: "",
-      shelterSum: "",
-      shoesSum: "",
-      toiletriesSum: "",
+      clothingSum: null,
+      cookwareSum: null,
+      electronicsSum: null,
+      miscSum: null,
+      repairSum: null,
+      shelterSum: null,
+      shoesSum: null,
+      toiletriesSum: null,
 
       // series: [this.bigThreeSum, this.clothingSum],
       options: {
@@ -688,14 +692,14 @@ export default {
             // 99,
             // 34,
             // 67,
-            this.shelterSum,
-            this.clothingSum,
-            this.cookwareSum,
-            this.electronicsSum,
-            this.miscSum,
-            this.repairSum,
-            this.shoesSum,
-            this.toiletriesSum,
+            this.shelterSum || 0,
+            this.clothingSum || 0,
+            this.cookwareSum || 0,
+            this.electronicsSum || 0,
+            this.miscSum || 0,
+            this.repairSum || 0,
+            this.shoesSum || 0,
+            this.toiletriesSum || 0,
           ],
         },
       ],
@@ -747,6 +751,9 @@ export default {
     //     console.log("all gears:", this.gears);
     //   });
     // },
+    // loadGraph: function () {
+
+    // },
     showUser: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
@@ -763,9 +770,7 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    // loadGraph: function() {
 
-    // },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;

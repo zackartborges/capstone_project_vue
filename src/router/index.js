@@ -5,8 +5,9 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import Logout from "../views/Logout.vue";
-import Example from "../views/Example.vue";
+// import Example from "../views/Example.vue";
 import MyPack from "../views/MyPack.vue";
+import SocialChannel from "../views/SocialChannel.vue";
 
 Vue.use(VueRouter);
 
@@ -31,10 +32,15 @@ const routes = [
     name: "Logout",
     component: Logout,
   },
+  // {
+  //   path: "/example",
+  //   name: "Example",
+  //   component: Example,
+  // },
   {
-    path: "/example",
-    name: "Example",
-    component: Example,
+    path: "/social_channel",
+    name: "SocialChannel",
+    component: SocialChannel,
   },
   {
     path: "/my-pack/:id",

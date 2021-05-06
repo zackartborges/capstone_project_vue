@@ -42,14 +42,23 @@
               <span>Your Pack</span>
             </a>
           </li>
-          <hr class="sidebar-divider" />
+          <!-- <hr class="sidebar-divider" /> -->
           <!-- Nav Item - Pages Collapse Menu -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="/example">
               <i class="fas fa-fw fa-compass"></i>
-              <span>Example</span>
+              <span>What is Backpacking?</span>
             </a>
-          </li>
+          </li> -->
+          <!-- feed link -->
+          <!-- <hr class="sidebar-divider" /> -->
+          <!-- Nav Item - Pages Collapse Menu -->
+          <!-- <li class="nav-item">
+            <a class="nav-link collapsed" href="/social_channel">
+              <i class="fas fa-fw fa-user-friends"></i>
+              <span>Social Channel</span>
+            </a>
+          </li> -->
 
           <!-- Divider -->
           <hr class="sidebar-divider" />
@@ -135,7 +144,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2020</span>
+              <span>Copyright &copy; OurPack 2029</span>
             </div>
           </div>
         </footer>
@@ -178,7 +187,16 @@
   </div>
 </template>
 
-<style></style>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+h2 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+td {
+  font-family: "Roboto Mono", monospace;
+}
+</style>
 <script>
 import axios from "axios";
 export default {
