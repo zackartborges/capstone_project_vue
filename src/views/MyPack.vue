@@ -1,7 +1,8 @@
 <template>
   <div id="my-pack">
     <!-- <button type="button class" class="btn btn-success"></button> -->
-    <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
+    <button v-on:click="loadGraph">Load Graph</button>
+    <!-- <apexchart width="500" type="bar" :options="options" :series="series" v-show="loaded"></apexchart> -->
     <form>
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }} oz.
 
@@ -653,16 +654,16 @@ export default {
       shelter: [],
       shoes: [],
       toiletries: [],
-      clothingSum: null,
-      cookwareSum: null,
-      electronicsSum: null,
-      miscSum: null,
-      repairSum: null,
-      shelterSum: null,
-      shoesSum: null,
-      toiletriesSum: null,
-
-      // series: [this.bigThreeSum, this.clothingSum],
+      clothingSum: "",
+      cookwareSum: "",
+      electronicsSum: "",
+      miscSum: "",
+      repairSum: "",
+      shelterSum: "",
+      shoesSum: "",
+      toiletriesSum: "",
+      loaded: false,
+      graph: "",
       options: {
         chart: {
           id: "vuechart-example",
@@ -692,14 +693,14 @@ export default {
             // 99,
             // 34,
             // 67,
-            this.shelterSum || 0,
-            this.clothingSum || 0,
-            this.cookwareSum || 0,
-            this.electronicsSum || 0,
-            this.miscSum || 0,
-            this.repairSum || 0,
-            this.shoesSum || 0,
-            this.toiletriesSum || 0,
+            this.shelterSum,
+            this.clothingSum,
+            this.cookwareSum,
+            this.electronicsSum,
+            this.miscSum,
+            this.repairSum,
+            this.shoesSum,
+            this.toiletriesSum,
           ],
         },
       ],
@@ -729,6 +730,7 @@ export default {
     this.showUser();
     this.categorySum();
   },
+  // mounted: function () {},
   // computed: {
   //   PackAndShelter: function () {
   //     return user.gears.pickBy(this.user.gears, function(u) {
@@ -753,7 +755,7 @@ export default {
     // },
     // loadGraph: function () {
 
-    // },
+    // };
     showUser: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
@@ -770,7 +772,10 @@ export default {
       //   return a + b;
       // }, 0);
     },
-
+    loadGraph: function () {
+      var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
+      console.log(graph);
+    },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
@@ -834,6 +839,7 @@ export default {
           return tot + arr.item_weight;
         }, 0);
         console.log(this.toiletriesSum);
+        this.loaded = true;
       });
     },
     // need to fix create gear id
@@ -855,10 +861,10 @@ export default {
           this.user.gear.push(response.data);
         })
         .catch((error) => {
-          console.log(error.response);
+          console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
-      params = "";
+      // params = "";
     },
     createGearCategoryJoin: function () {
       console.log("creating category join..");

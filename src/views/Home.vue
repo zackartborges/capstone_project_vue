@@ -6,6 +6,7 @@
         For hikers and travelers, a website where your gear is organized and displayed in front of you. (whether you are
         backpacking or hiking)
       </p>
+      <img src="../assets/hiking.jpeg" />
     </div>
     <!-- <div class="buttons">
       <router-link to="/signup" tag="button">Signup!</router-link>
@@ -16,7 +17,11 @@
   </div>
 </template>
 
-<style></style>
+<style>
+img {
+  width: 100%;
+}
+</style>
 
 <script>
 // import axios from "axios";
