@@ -31,7 +31,7 @@
             <option value="24">Toiletries</option>
             <option value="27">Misc.</option>
           </select>
-          <button v-on:click.prevent="createGear()">Add a new Item</button>
+          <button type="button" class="btn btn-success" v-on:click.prevent="createGear()">Add a new Item</button>
         </form>
       </div>
       <!-- <div v-for="pack in packs" v-bind:key="pack">
@@ -42,15 +42,15 @@
     <hr />
     <!-- for loop -->
     <div class="my-pack">
-      <tr>
-        <th>Item Category</th>
-        <br />
-        <th>Item Name</th>
-        <br />
-        <th>Item Description</th>
-        <th>Item Weight</th>
-        <th>Item Quantity</th>
-      </tr>
+      <div class="table-headers">
+        <tr>
+          <th>Item Category</th>
+          <th>Item Name</th>
+          <th>Item Description</th>
+          <th>Item Weight</th>
+          <th>Item Quantity</th>
+        </tr>
+      </div>
       <h2>Big 3 + Sleeping Pad</h2>
       <table id="big-3">
         <thead>
@@ -70,7 +70,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -127,7 +127,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -184,7 +184,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -241,7 +241,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -298,7 +298,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -354,7 +354,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -412,7 +412,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -471,7 +471,7 @@
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
             <td>{{ gear.item_quantity }}</td>
-            <td><button v-on:click="showGear(gear)">Edit!</button></td>
+            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
             <span class="edit-gear">
               <dialog id="gear-details">
                 <form method="dialog">
@@ -592,10 +592,15 @@
   </div>
 </template>
 <style>
+body {
+  background-color: beige;
+}
 .my-pack {
   border-collapse: collapse;
 }
-
+.table-headers {
+  padding: 10px 20px;
+}
 td {
   border-bottom: 1px solid #ddd;
   /* border: ridge; */
@@ -848,6 +853,7 @@ export default {
           console.log(error.response);
           this.errors = error.response.data.errors;
         });
+      params = "";
     },
     createGearCategoryJoin: function () {
       console.log("creating category join..");
