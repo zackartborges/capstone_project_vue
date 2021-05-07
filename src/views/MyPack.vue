@@ -4,7 +4,8 @@
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
     <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart>
     <form>
-      Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(2) }} oz.
+      Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
+      lbs)
 
       <!-- </div> -->
       <div class="gears-new">
@@ -47,7 +48,7 @@
     <div class="my-pack">
       <div class="table-headers">
         <tr>
-          <th>Item Category</th>
+          <!-- <th>Item Category</th> -->
           <th>Item Name</th>
           <th>Item Description</th>
           <th>Item Weight</th>
@@ -68,7 +69,7 @@
         <tbody>
           <!-- user.gears.categories[0].name -->
           <tr v-for="gear in filterBy(gears, 'Big 3', 'item_category')" v-bind:key="gear.id">
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -125,7 +126,7 @@
           </thead>
           <tbody>
             <tr v-for="gear in filterBy(gears, 'Clothing', 'item_category')" v-bind:key="gear.id">
-              <td>{{ gear.item_category[0].name }}</td>
+              <!-- <td>{{ gear.item_category[0].name }}</td> -->
               <td>{{ gear.item_name }}</td>
               <td>{{ gear.item_description }}</td>
               <td>{{ gear.item_weight }} oz.</td>
@@ -183,7 +184,7 @@
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Cookware', 'item_category')" v-bind:key="gear.id">
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -240,7 +241,7 @@
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Electronics', 'item_category')" v-bind:key="gear.id">
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -297,7 +298,7 @@
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Repair', 'item_category')" v-bind:key="gear.id">
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -353,7 +354,7 @@
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Shoes', 'item_category')" v-bind:key="gear.id">
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -411,7 +412,7 @@
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Toiletries', 'item_category')" v-bind:key="gear.id">
             <!-- <div v-if="gears"> -->
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -470,7 +471,7 @@
         </thead>
         <tbody>
           <tr v-for="gear in filterBy(gears, 'Misc.', 'item_category')" v-bind:key="gear.id">
-            <td>{{ gear.item_category[0].name }}</td>
+            <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
             <td>{{ gear.item_weight }} oz.</td>
@@ -605,6 +606,8 @@ body {
 .table-headers {
   padding: 10px 20px;
 }
+th {
+}
 td {
   border-bottom: 1px solid #ddd;
   /* border: ridge; */
@@ -687,13 +690,13 @@ export default {
           name: "series-1",
           data: [
             107.8,
-            21.6,
+            23.9,
             13.7,
             24,
             49,
             25,
-            27.5,
-            2,
+            27.6,
+            10,
             // this.shelterSum,
             // this.clothingSum,
             // this.cookwareSum,
@@ -766,6 +769,8 @@ export default {
         this.totalSum = this.user.gears.reduce(function (tot, arr) {
           return tot + arr.item_weight;
         }, 0);
+        this.ozToLbs = this.totalSum / 16;
+        console.log(this.ozToLbs);
         console.log(this.totalSum.toFixed(2));
       });
 
