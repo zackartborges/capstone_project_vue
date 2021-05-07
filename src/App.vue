@@ -78,7 +78,7 @@
         <span v-else>
           <li class="nav-item">
             <a class="nav-link collapsed" href="/login">
-              <i class="fas fa-fw fa-cog"></i>
+              <i class="fas fa-door-open"></i>
               <span>Login</span>
             </a>
           </li>
@@ -87,7 +87,7 @@
 
           <li class="nav-item">
             <a class="nav-link collapsed" href="/signup">
-              <i class="fas fa-fw fa-cog"></i>
+              <i class="fas fa-user-edit"></i>
               <span>Signup</span>
             </a>
           </li>
