@@ -51,14 +51,14 @@
             </a>
           </li> -->
           <!-- feed link -->
-          <!-- <hr class="sidebar-divider" /> -->
+          <hr class="sidebar-divider" />
           <!-- Nav Item - Pages Collapse Menu -->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link collapsed" href="/social_channel">
               <i class="fas fa-fw fa-user-friends"></i>
               <span>Social Channel</span>
             </a>
-          </li> -->
+          </li>
 
           <!-- Divider -->
           <hr class="sidebar-divider" />
