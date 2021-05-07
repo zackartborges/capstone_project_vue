@@ -1,9 +1,8 @@
 <template>
   <div class="contruction">
     <hr />
-    <p>Hello</p>
-
-    <!-- <img src="./assets/under_construction.jpeg" alt="" /> -->
+    <img src="../assets/under_construction.jpeg" alt="" />
+    <hr />
   </div>
 </template>
 

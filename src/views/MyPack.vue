@@ -18,8 +18,8 @@
           <input type="text" class="form-control" v-model="newGearWeight" />
           Quantity:
           <input type="text" class="form-control" v-model="newGearQuantity" />
-          Gear URL:
-          <input type="text" class="form-control" v-model="newGearUrl" />
+          <!-- Gear URL:
+          <input type="text" class="form-control" v-model="newGearUrl" /> -->
           Category:
           <!-- dropdown menu for categories -->
           <select class="form-control" id="exampleFormControlSelect1" v-model="newGearCategory">
@@ -686,14 +686,14 @@ export default {
         {
           name: "series-1",
           data: [
-            20,
-            15,
-            17,
-            8,
-            5,
-            14,
-            20,
-            16,
+            107.8,
+            21.6,
+            13.7,
+            24,
+            49,
+            25,
+            27.5,
+            2,
             // this.shelterSum,
             // this.clothingSum,
             // this.cookwareSum,
@@ -781,7 +781,7 @@ export default {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
         this.gears = this.user.gears;
-        // console.log("user:", this.gears);
+        console.log("user:", this.gears);
         this.shelter = this.user.gears.filter((gear) => gear.category_id == 29);
         console.log(this.shelter);
         this.clothing = this.user.gears.filter((gear) => gear.category_id == 21);
@@ -794,7 +794,7 @@ export default {
         console.log(this.misc);
         this.repair = this.user.gears.filter((gear) => gear.category_id == 25);
         console.log(this.repair);
-        this.shelter = this.user.gears.filter((gear) => gear.category_id == 28);
+        this.shelter = this.user.gears.filter((gear) => gear.category_id == 29);
         console.log(this.shelter);
         this.shoes = this.user.gears.filter((gear) => gear.category_id == 26);
         console.log(this.shoes);
@@ -858,8 +858,9 @@ export default {
       axios
         .post("/api/gears", params)
         .then((response) => {
-          console.log(response.data);
           this.user.gear.push(response.data);
+          console.log(response.data);
+          this.$router.push(`"/my-pack/${this.$route.params.id}"`);
         })
         .catch((error) => {
           console.log(error.response.data.errors);
