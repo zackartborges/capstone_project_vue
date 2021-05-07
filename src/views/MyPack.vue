@@ -3,7 +3,7 @@
     <!-- <button type="button class" class="btn btn-success"></button> -->
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
     <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart>
-    <form>
+    <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
 

@@ -1,11 +1,8 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
+    <h1 class="home-title">{{ message }}</h1>
     <div class="testimonial">
-      <p>
-        For hikers and travelers, a website where your gear is organized and displayed in front of you. (whether you are
-        backpacking or hiking)
-      </p>
+      <p>A web application for hikers and travelers for organizing and tracking their gear.</p>
       <img src="../assets/hiking.jpeg" />
     </div>
     <!-- <div class="buttons">

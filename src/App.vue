@@ -190,11 +190,26 @@
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+h1 {
+  font-family: "Lobster", cursive;
+}
+.login{
+    font-family: "Exo 2", sans-serif;
+}
+.home-title {
+  font-family: "Exo 2", sans-serif;
+}
 h2 {
   font-family: "Roboto Condensed", sans-serif;
 }
 td {
   font-family: "Roboto Mono", monospace;
+}
+p {
+  font-family: "Raleway", sans-serif;
 }
 </style>
 <script>
