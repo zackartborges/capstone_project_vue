@@ -95,10 +95,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
@@ -210,10 +210,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
@@ -267,10 +267,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
@@ -324,10 +324,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
@@ -380,10 +380,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
@@ -438,10 +438,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
@@ -497,10 +497,10 @@
                     Quantity:
                     <input type="text" v-model="currentGear.item_quantity" />
                   </p>
-                  <p>
+                  <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
-                  </p>
+                  </p> -->
                   <p>
                     Category:
                     <input type="text" v-model="currentGear.item_category" />
