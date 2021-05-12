@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <category-v-for></category-v-for>
     <div id="wrapper">
       <!-- Sidebar -->
       <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -196,8 +197,8 @@
 h1 {
   font-family: "Lobster", cursive;
 }
-.login{
-    font-family: "Exo 2", sans-serif;
+.login {
+  font-family: "Exo 2", sans-serif;
 }
 .home-title {
   font-family: "Exo 2", sans-serif;
@@ -213,6 +214,8 @@ p {
 }
 </style>
 <script>
+import CategoryVFor from "./components/CategoryVFor.vue";
+
 import axios from "axios";
 export default {
   data: function () {
@@ -242,6 +245,9 @@ export default {
         console.log(this.totalSum.toFixed(2));
       });
     },
+  },
+  components: {
+    CategoryVFor,
   },
 };
 </script>
