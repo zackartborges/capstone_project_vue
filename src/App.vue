@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <category-v-for></category-v-for>
     <div id="wrapper">
       <!-- Sidebar -->
       <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -214,7 +213,7 @@ p {
 }
 </style>
 <script>
-import CategoryVFor from "./components/CategoryVFor.vue";
+// import CategoryVFor from "./components/CategoryVFor.vue";
 
 import axios from "axios";
 export default {
@@ -246,8 +245,8 @@ export default {
       });
     },
   },
-  components: {
-    CategoryVFor,
-  },
+  // components: {
+  //   CategoryVFor,
+  // },
 };
 </script>
