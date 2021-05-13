@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table id="electronics">
+    <table id="category-v-for">
       <thead>
         <!-- <tr>
             <th>Item Category</th>
@@ -11,7 +11,7 @@
           </tr> -->
       </thead>
       <tbody>
-        <tr v-for="gear in filterBy(gears, 'Electronics', 'item_category')" v-bind:key="gear.id">
+        <tr v-for="gear in filterBy(gears, '{{label}}', 'item_category')" v-bind:key="gear.id">
           <!-- <td>{{ gear.item_category[0].name }}</td> -->
           <td>{{ gear.item_name }}</td>
           <td>{{ gear.item_description }}</td>
@@ -167,6 +167,10 @@ export default {
       //   },
       // ],
     };
+  },
+  props: {
+    label: { required: true, type: String },
+    done: { default: false, type: Boolean },
   },
   created: function () {
     this.showUser();

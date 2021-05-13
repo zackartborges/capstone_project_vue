@@ -230,7 +230,7 @@
         </tbody>
       </table>
       <h2>Electronics</h2>
-      <category-v-for></category-v-for>
+      <category-v-for label="egitlectronics"></category-v-for>
 
       <table id="repair-medkit">
         <h2>Repair and Med-Kit</h2>
