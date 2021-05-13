@@ -2,7 +2,7 @@
   <div id="my-pack">
     <!-- <button type="button class" class="btn btn-success"></button> -->
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
-    <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart>
+    <!-- <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart> -->
     <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
@@ -778,10 +778,10 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    loadGraph: function () {
-      var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
-      console.log(graph);
-    },
+    // loadGraph: function () {
+    //   var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
+    //   console.log(graph);
+    // },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
