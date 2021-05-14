@@ -3,6 +3,8 @@
     <!-- <button type="button class" class="btn btn-success"></button> -->
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
     <!-- <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart> -->
+    <canvas id="myChart" width="400" height="400"></canvas>
+
     <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
@@ -617,12 +619,15 @@ td {
   width: 500px;
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="path/to/chartjs/dist/Chart.js"></script>
 
 <script>
 import axios from "axios";
 import Vue from "vue";
 // import ApexCharts from "apexcharts";
 import Vue2Filters from "vue2-filters";
+import { Chart } from "chart.js";
 
 Vue.use(Vue2Filters);
 // import dropdown from "vue-dropdowns";
@@ -666,73 +671,12 @@ export default {
       shelterSum: "",
       shoesSum: "",
       toiletriesSum: "",
-      loaded: false,
-      graph: "",
-      options: {
-        chart: {
-          id: "vuechart-example",
-        },
-        xaxis: {
-          categories: [
-            "Big 3 + Shelter",
-            "Clothing",
-            "Cookware",
-            "Electronics",
-            "Misc.",
-            "Repair + Med Kit",
-            "Shoes",
-            "Toiletries",
-          ],
-        },
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [
-            107.8,
-            23.9,
-            13.7,
-            24,
-            49,
-            25,
-            27.6,
-            10,
-            // this.shelterSum,
-            // this.clothingSum,
-            // this.cookwareSum,
-            // this.electronicsSum,
-            // this.miscSum,
-            // this.repairSum,
-            // this.shoesSum,
-            // this.toiletriesSum,
-          ],
-        },
-      ],
-      // chartOptions: {
-      //   chart: {
-      //     width: 380,
-      //     type: "donut",
-      //   },
-      //   dataLabels: false,
-      // },
-      // responsive: [
-      //   {
-      //     breakpoint: 480,
-      //     options: {
-      //       chart: {
-      //         width: 200,
-      //       },
-      //       legend: {
-      //         position: "bottom",
-      //       },
-      //     },
-      //   },
-      // ],
     };
   },
   created: function () {
     this.showUser();
     this.categorySum();
+    this.loadGraph();
   },
   // mounted: function () {},
   // computed: {
@@ -778,10 +722,50 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    // loadGraph: function () {
-    //   var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
-    //   console.log(graph);
-    // },
+    loadGraph: function () {
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        },
+      });
+      console.log(myChart);
+    },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
