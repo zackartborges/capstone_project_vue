@@ -2,7 +2,7 @@
   <div id="my-pack">
     <!-- <button type="button class" class="btn btn-success"></button> -->
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
-    <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart>
+    <apexchart width="75%" type="bar" :options="options" :series="series"></apexchart>
     <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
@@ -733,6 +733,7 @@ export default {
   created: function () {
     this.showUser();
     this.categorySum();
+    this.loadGraph();
   },
   // mounted: function () {},
   // computed: {
@@ -758,8 +759,52 @@ export default {
     //   });
     // },
     // loadGraph: function () {
+    //   var options = {
+    //     chart: {
+    //       type: "line",
+    //     },
+    //     series: [
+    //       {
+    //         name: "pack",
+    //         data: [
+    //           107.8,
+    //           23.9,
+    //           13.7,
+    //           24,
+    //           49,
+    //           25,
+    //           27.6,
+    //           10,
+    //           // this.shelterSum,
+    //           // this.clothingSum,
+    //           // this.cookwareSum,
+    //           // this.electronicsSum,
+    //           // this.miscSum,
+    //           // this.repairSum,
+    //           // this.shoesSum,
+    //           // this.toiletriesSum,
+    //         ],
+    //       },
+    //     ],
+    //     xaxis: {
+    //       categories: [
+    //         "Big 3 + Shelter",
+    //         "Clothing",
+    //         "Cookware",
+    //         "Electronics",
+    //         "Misc.",
+    //         "Repair + Med Kit",
+    //         "Shoes",
+    //         "Toiletries",
+    //       ],
+    //     },
+    //   };
+    //   var chart = new ApexCharts(document.querySelector("#chart"), options);
+    //   chart.render();
+    //   console.log(this.options);
+    //   console.log(this.series);
+    // },
 
-    // };
     showUser: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
@@ -778,10 +823,10 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    loadGraph: function () {
-      var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
-      console.log(graph);
-    },
+    // loadGraph: function () {
+    //   var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
+    //   console.log(graph);
+    // },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
