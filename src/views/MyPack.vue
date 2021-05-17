@@ -733,7 +733,7 @@ export default {
   created: function () {
     this.showUser();
     this.categorySum();
-    this.loadGraph();
+    // this.loadGraph();
   },
   // mounted: function () {},
   // computed: {
@@ -823,10 +823,10 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    // loadGraph: function () {
-    //   var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
-    //   console.log(graph);
-    // },
+    //  loadGraph: function () {
+    //    var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
+    //    console.log(graph);
+    //  },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
