@@ -24,6 +24,19 @@ var jwt = localStorage.getItem("jwt");
 if (jwt) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
 }
+// my chart variables
+// var stars = [135850, 52122, 148825, 16939, 9763];
+// var frameworks = ["React", "Angular", "Vue", "Hyperapp", "Omi"];
+// var ctx = document.getElementById("myChart");
+// var myChart = new Chart(ctx, {
+//   type: "pie",
+//   data: {    labels: frameworks,
+//     datasets: [{
+//        label: "POPULAR JS FRAMES",
+//        data: stars
+//     }]
+// },
+// });
 
 Vue.config.productionTip = false;
 

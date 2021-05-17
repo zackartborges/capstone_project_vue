@@ -3,8 +3,9 @@
     <!-- <button type="button class" class="btn btn-success"></button> -->
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
     <!-- <apexchart width="75%" type="bar" :options="options" :series="series" v-show="loaded"></apexchart> -->
-    <canvas id="myChart" width="400" height="400"></canvas>
-
+    <div>
+      <canvas id="myChart" width="800" height="400"></canvas>
+    </div>
     <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
@@ -619,15 +620,14 @@ td {
   width: 500px;
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script src="path/to/chartjs/dist/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 import axios from "axios";
 import Vue from "vue";
 // import ApexCharts from "apexcharts";
 import Vue2Filters from "vue2-filters";
-import { Chart } from "chart.js";
+import Chart from "chart.js/auto";
 
 Vue.use(Vue2Filters);
 // import dropdown from "vue-dropdowns";
@@ -678,6 +678,7 @@ export default {
     this.categorySum();
     this.loadGraph();
   },
+
   // mounted: function () {},
   // computed: {
   //   PackAndShelter: function () {
@@ -701,9 +702,63 @@ export default {
     //     console.log("all gears:", this.gears);
     //   });
     // },
-    // loadGraph: function () {
-
-    // };
+    loadGraph: function () {
+      // var ctx = document.getElementById("myChart");
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+      console.log(myChart);
+      // var stars = [135850, 52122, 148825, 16939, 9763];
+      // var frameworks = ["React", "Angular", "Vue", "Hyperapp", "Omi"];
+      // var ctx = document.getElementById("myChart");
+      // var myChart = new Chart(ctx, {
+      //   type: "pie",
+      //   data: {
+      //     labels: frameworks,
+      //     datasets: [
+      //       {
+      //         label: "POPULAR JS FRAMES",
+      //         data: stars,
+      //       },
+      //     ],
+      //   },
+      // });
+      // console.log(myChart);
+    },
     showUser: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
@@ -722,50 +777,7 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    loadGraph: function () {
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-          datasets: [
-            {
-              label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-              ],
-              borderColor: [
-                "rgba(255,99,132,1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-              ],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
-          },
-        },
-      });
-      console.log(myChart);
-    },
+
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
