@@ -1,17 +1,8 @@
 <template>
   <div>
     <table id="category-v-for">
-      <thead>
-        <!-- <tr>
-            <th>Item Category</th>
-            <th>Item Name</th>
-            <th>Item Description</th>
-            <th>Item Weight</th>
-            <th>Item Quantity</th>
-          </tr> -->
-      </thead>
       <tbody>
-        <tr v-for="gear in filterBy(gears, '{{label}}', 'item_category')" v-bind:key="gear.id">
+        <tr v-for="gear in gears.filter((gear) => gear.category_id == {{name}})" v-bind:key="gear.id">
           <!-- <td>{{ gear.item_category[0].name }}</td> -->
           <td>{{ gear.item_name }}</td>
           <td>{{ gear.item_description }}</td>
@@ -35,7 +26,7 @@
                   <input type="text" v-model="currentGear.item_weight" />
                 </p>
                 <p>
-                  Quantity:
+                  {{ name }}
                   <input type="text" v-model="currentGear.item_quantity" />
                 </p>
                 <!-- <p>
@@ -168,10 +159,8 @@ export default {
       // ],
     };
   },
-  props: {
-    label: { required: true, type: String },
-    done: { default: false, type: Boolean },
-  },
+  // name: "CategoryVFor",
+  props: ["name"],
   created: function () {
     this.showUser();
     this.categorySum();
@@ -220,10 +209,10 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    loadGraph: function () {
-      var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
-      console.log(graph);
-    },
+    // loadGraph: function () {
+    //   var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
+    //   console.log(graph);
+    // },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
