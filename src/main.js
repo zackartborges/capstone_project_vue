@@ -26,8 +26,17 @@ if (jwt) {
 }
 
 Vue.config.productionTip = false;
+Vue.component('v-for-component' , {
+  data: function () {
+return {
+  
+}
+
+  }
+})
 
 new Vue({
   router,
   render: (h) => h(App),
 }).$mount("#app");
+

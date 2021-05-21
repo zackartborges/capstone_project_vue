@@ -60,7 +60,7 @@
         <thead></thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
-          <tr v-for="gear in filterBy(gears, 'Big 3', 'item_category')" v-bind:key="gear.id">
+          <tr v-for="gear in gears.filter((gear) => gear.category_id == 29)" v-bind:key="gear.id">
             <!-- <td>{{ gear.item_category[0].name }}</td> -->
             <td>{{ gear.item_name }}</td>
             <td>{{ gear.item_description }}</td>
@@ -106,7 +106,6 @@
       </table>
       <div class="clothing-table">
         <h2>Clothing</h2>
-        <category-v-for name="'clothing'" />
       </div>
 
       <h2>Cookware and Filtration</h2>
@@ -163,8 +162,8 @@
           <h2>Electronics</h2>
           <thead></thead>
           <tbody>
-            <tr v-for="gear in filterBy(gears, 'Electronics', 'item_category')" v-bind:key="gear.id">
-              <!-- <td>{{ gear.item_category[0].name }}</td> -->
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 23)" v-bind:key="gear.id">
+              <td>{{ gear.item_category[0].name }}</td>
               <td>{{ gear.item_name }}</td>
               <td>{{ gear.item_description }}</td>
               <td>{{ gear.item_weight }} oz.</td>
@@ -211,8 +210,8 @@
           <h2>Repair and Med-Kit</h2>
           <thead></thead>
           <tbody>
-            <tr v-for="gear in filterBy(gears, 'Repair', 'item_category')" v-bind:key="gear.id">
-              <!-- <td>{{ gear.item_category[0].name }}</td> -->
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 25)" v-bind:key="gear.id">
+              <td>{{ gear.item_category[0].name }}</td>
               <td>{{ gear.item_name }}</td>
               <td>{{ gear.item_description }}</td>
               <td>{{ gear.item_weight }} oz.</td>
@@ -259,8 +258,8 @@
         <table id="shoes">
           <thead></thead>
           <tbody>
-            <tr v-for="gear in filterBy(gears, 'Shoes', 'item_category')" v-bind:key="gear.id">
-              <!-- <td>{{ gear.item_category[0].name }}</td> -->
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 26)" v-bind:key="gear.id">
+              <td>{{ gear.item_category[0].name }}</td>
               <td>{{ gear.item_name }}</td>
               <td>{{ gear.item_description }}</td>
               <td>{{ gear.item_weight }} oz.</td>
@@ -308,7 +307,7 @@
           <h2>Toiletries</h2>
           <thead></thead>
           <tbody>
-            <tr v-for="gear in filterBy(gears, 'Toiletries', 'item_category')" v-bind:key="gear.id">
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 24)" v-bind:key="gear.id">
               <!-- <div v-if="gears"> -->
               <!-- <td>{{ gear.item_category[0].name }}</td> -->
               <td>{{ gear.item_name }}</td>
@@ -360,8 +359,8 @@
         <table id="misc">
           <thead></thead>
           <tbody>
-            <tr v-for="gear in filterBy(gears, 'misc.', 'item_category')" v-bind:key="gear.id">
-              <!-- <td>{{ gear.item_category[0].name }}</td> -->
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 27)" v-bind:key="gear.id">
+              <td>{{ gear.item_category[0].name }}</td>
               <td>{{ gear.item_name }}</td>
               <td>{{ gear.item_description }}</td>
               <td>{{ gear.item_weight }} oz.</td>
@@ -515,13 +514,13 @@ import axios from "axios";
 import Vue from "vue";
 // import ApexCharts from "apexcharts";
 import Vue2Filters from "vue2-filters";
-import CategoryVFor from "../components/CategoryVFor.vue";
+// import CategoryVFor from "../components/CategoryVFor.vue";
 // import CategoryVFor from "../components/CategoryVFor.vue";
 Vue.use(Vue2Filters);
 // import dropdown from "vue-dropdowns";
 
 export default {
-  components: { CategoryVFor },
+  // components: { CategoryVFor },
 
   // CategoryVFor
   mixins: [Vue2Filters.mixin],
@@ -670,10 +669,10 @@ export default {
       //   return a + b;
       // }, 0);
     },
-    loadGraph: function () {
-      var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
-      console.log(graph);
-    },
+    // loadGraph: function () {
+    //   var graph = <apexchart width="500" height="500" type="bar" options="options" series="series"></apexchart>;
+    //   console.log(graph);
+    // },
     categorySum: function () {
       axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
         this.user = response.data;
