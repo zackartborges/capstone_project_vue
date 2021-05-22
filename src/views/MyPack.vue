@@ -768,19 +768,10 @@ export default {
         this.gears = this.user.gears;
         console.log("user:", this.gears);
         this.shelter = this.user.gears.filter((gear) => gear.category_id == 29);
-        if (this.shelter.length == 0) {
-          console.log("There are no shelter gear items.");
-        }
         console.log(this.shelter);
         this.clothing = this.user.gears.filter((gear) => gear.category_id == 21);
-        if (this.clothing.length == 0) {
-          console.log("There are no clothing gear items.");
-        }
         console.log(this.clothing);
         this.cookware = this.user.gears.filter((gear) => gear.category_id == 22);
-        if (this.cookware.length == 0) {
-          console.log("There are no cookware gear items.");
-        }
         console.log(this.cookware);
         this.electronics = this.user.gears.filter((gear) => gear.category_id == 23);
         console.log(this.electronics);
