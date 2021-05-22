@@ -6,7 +6,6 @@
     <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
-
       <!-- </div> -->
       <div class="gears-new">
         <form>
@@ -57,7 +56,6 @@
       </div>
       <h2>Big 3 + Sleeping Pad</h2>
       <table id="big-3">
-        <thead></thead>
         <tbody>
           <!-- user.gears.categories[0].name -->
           <tr v-for="gear in gears.filter((gear) => gear.category_id == 29)" v-bind:key="gear.id">
@@ -110,7 +108,6 @@
 
       <h2>Cookware and Filtration</h2>
       <table id="cookware-filtration">
-        <thead></thead>
         <tbody>
           <tr v-for="gear in gears.filter((gear) => gear.category_id == 22)" v-bind:key="gear.id">
             <!-- <td>{{ gear.item_category[0].name }}</td> -->
@@ -160,7 +157,7 @@
       <tbody>
         <table id="electronics">
           <h2>Electronics</h2>
-          <thead></thead>
+
           <tbody>
             <tr v-for="gear in gears.filter((gear) => gear.category_id == 23)" v-bind:key="gear.id">
               <td>{{ gear.item_category[0].name }}</td>
@@ -208,7 +205,7 @@
         </table>
         <table id="repair-medkit">
           <h2>Repair and Med-Kit</h2>
-          <thead></thead>
+
           <tbody>
             <tr v-for="gear in gears.filter((gear) => gear.category_id == 25)" v-bind:key="gear.id">
               <td>{{ gear.item_category[0].name }}</td>
@@ -256,7 +253,6 @@
         </table>
         <h2>Shoes</h2>
         <table id="shoes">
-          <thead></thead>
           <tbody>
             <tr v-for="gear in gears.filter((gear) => gear.category_id == 26)" v-bind:key="gear.id">
               <td>{{ gear.item_category[0].name }}</td>
@@ -305,7 +301,7 @@
 
         <table id="toiletries">
           <h2>Toiletries</h2>
-          <thead></thead>
+
           <tbody>
             <tr v-for="gear in gears.filter((gear) => gear.category_id == 24)" v-bind:key="gear.id">
               <!-- <div v-if="gears"> -->
@@ -357,7 +353,6 @@
         <!-- </span> -->
         <h2>Misc.</h2>
         <table id="misc">
-          <thead></thead>
           <tbody>
             <tr v-for="gear in gears.filter((gear) => gear.category_id == 27)" v-bind:key="gear.id">
               <td>{{ gear.item_category[0].name }}</td>
@@ -514,8 +509,6 @@ import axios from "axios";
 import Vue from "vue";
 // import ApexCharts from "apexcharts";
 import Vue2Filters from "vue2-filters";
-// import CategoryVFor from "../components/CategoryVFor.vue";
-// import CategoryVFor from "../components/CategoryVFor.vue";
 Vue.use(Vue2Filters);
 // import dropdown from "vue-dropdowns";
 

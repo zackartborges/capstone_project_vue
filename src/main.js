@@ -6,10 +6,10 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 // import ApexCharts from "apexcharts";
 import "@/plugins/apexcharts";
 
-
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+// import { template } from "lodash";
 
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
@@ -26,17 +26,7 @@ if (jwt) {
 }
 
 Vue.config.productionTip = false;
-Vue.component('v-for-component' , {
-  data: function () {
-return {
-  
-}
-
-  }
-})
-
 new Vue({
   router,
   render: (h) => h(App),
 }).$mount("#app");
-
