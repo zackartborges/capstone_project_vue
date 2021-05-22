@@ -9,11 +9,6 @@
 <style></style>
 
 <script>
+// import CategoryVFor from "../components/CategoryVFor.vue";
 // import axios from "axios";
-
-export default {
-  data: function () {
-    return {};
-  },
-};
 </script>
