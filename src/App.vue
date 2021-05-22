@@ -196,8 +196,8 @@
 h1 {
   font-family: "Lobster", cursive;
 }
-.login{
-    font-family: "Exo 2", sans-serif;
+.login {
+  font-family: "Exo 2", sans-serif;
 }
 .home-title {
   font-family: "Exo 2", sans-serif;
@@ -213,7 +213,10 @@ p {
 }
 </style>
 <script>
+// import CategoryVFor from "./components/CategoryVFor.vue";
+
 import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -243,5 +246,8 @@ export default {
       });
     },
   },
+  // components: {
+  //   CategoryVFor,
+  // },
 };
 </script>
