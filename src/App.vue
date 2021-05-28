@@ -77,7 +77,7 @@
         <!-- if not logged in show this -->
         <span v-else>
           <li class="nav-item">
-            <a class="nav-link collapsed" href="/login">
+            <a class="nav-link collapsed" href="/#/login">
               <i class="fas fa-door-open"></i>
               <span>Login</span>
             </a>
