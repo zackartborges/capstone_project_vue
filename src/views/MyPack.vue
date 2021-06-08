@@ -2,7 +2,7 @@
   <div id="my-pack">
     <!-- <button type="button class" class="btn btn-success"></button> -->
     <!-- <button v-on:click="loadGraph">Load Graph</button> -->
-    <!-- <apexchart width="75%" type="bar" :options="options" :series="series"></apexchart> -->
+    <apexchart width="75%" type="bar" :options="options" :series="series"></apexchart>
     <form class="login">
       Hello {{ user.name }}! The total weight of your pack is {{ totalSum.toFixed(1) }} oz. ({{ ozToLbs.toFixed(1) }}
       lbs)
@@ -55,8 +55,6 @@
         </tr>
       </div>
       <h2>Big 3 + Sleeping Pad</h2>
-      <p v-if="this.shelter.length == 0">There are no Big 3 + Sleeping Pad items</p>
-
       <table id="big-3">
         <tbody>
           <!-- user.gears.categories[0].name -->
@@ -105,7 +103,6 @@
       </table>
       <div class="clothing-table">
         <h2>Clothing</h2>
-        <p v-if="this.clothing.length == 0">There are no clothing items</p>
         <tbody>
           <tr v-for="gear in gears.filter((gear) => gear.category_id == 21)" v-bind:key="gear.id">
             <td>{{ gear.item_name }}</td>
@@ -152,8 +149,6 @@
       </div>
 
       <h2>Cookware and Filtration</h2>
-      <p v-if="this.cookware.length == 0">There are no Cookware and Filtration items</p>
-
       <table id="cookware-filtration">
         <tbody>
           <tr v-for="gear in gears.filter((gear) => gear.category_id == 22)" v-bind:key="gear.id">
@@ -200,254 +195,247 @@
           </tr>
         </tbody>
       </table>
-      <!-- <tbody> -->
-      <table id="electronics">
-        <h2>Electronics</h2>
-        <p v-if="this.electronics.length == 0">There are no electronics items.</p>
+      <tbody>
+        <table id="electronics">
+          <h2>Electronics</h2>
 
-        <tbody>
-          <tr v-for="gear in gears.filter((gear) => gear.category_id == 23)" v-bind:key="gear.id">
-            <td>{{ gear.item_name }}</td>
-            <td>{{ gear.item_description }}</td>
-            <td>{{ gear.item_weight }} oz.</td>
-            <td>{{ gear.item_quantity }}</td>
-            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
-            <span class="edit-gear">
-              <dialog id="gear-details">
-                <form method="dialog">
-                  <h2>Gear Info</h2>
-                  <p>
-                    Name:
-                    <input type="text" v-model="currentGear.item_name" />
-                  </p>
-                  <p>
-                    Description:
-                    <input type="text" v-model="currentGear.item_description" />
-                  </p>
-                  <p>
-                    Weight:
-                    <input type="text" v-model="currentGear.item_weight" />
-                  </p>
-                  <p>
-                    Quantity:
-                    <input type="text" v-model="currentGear.item_quantity" />
-                  </p>
-                  <!-- <p>
+          <tbody>
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 23)" v-bind:key="gear.id">
+              <td>{{ gear.item_name }}</td>
+              <td>{{ gear.item_description }}</td>
+              <td>{{ gear.item_weight }} oz.</td>
+              <td>{{ gear.item_quantity }}</td>
+              <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
+              <span class="edit-gear">
+                <dialog id="gear-details">
+                  <form method="dialog">
+                    <h2>Gear Info</h2>
+                    <p>
+                      Name:
+                      <input type="text" v-model="currentGear.item_name" />
+                    </p>
+                    <p>
+                      Description:
+                      <input type="text" v-model="currentGear.item_description" />
+                    </p>
+                    <p>
+                      Weight:
+                      <input type="text" v-model="currentGear.item_weight" />
+                    </p>
+                    <p>
+                      Quantity:
+                      <input type="text" v-model="currentGear.item_quantity" />
+                    </p>
+                    <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
-                  <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
-                  </p>
-                  <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
-                  <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
-                  <button>Close</button>
-                </form>
-              </dialog>
-            </span>
-          </tr>
-        </tbody>
-      </table>
-      <table id="repair-medkit">
-        <h2>Repair and Med-Kit</h2>
-        <p v-if="this.repair.length == 0">There are no repair items.</p>
+                    <p>
+                      Category:
+                      <input type="text" v-model="currentGear.item_category" />
+                    </p>
+                    <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
+                    <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
+                    <button>Close</button>
+                  </form>
+                </dialog>
+              </span>
+            </tr>
+          </tbody>
+        </table>
+        <table id="repair-medkit">
+          <h2>Repair and Med-Kit</h2>
 
-        <tbody>
-          <tr v-for="gear in gears.filter((gear) => gear.category_id == 25)" v-bind:key="gear.id">
-            <td>{{ gear.item_name }}</td>
-            <td>{{ gear.item_description }}</td>
-            <td>{{ gear.item_weight }} oz.</td>
-            <td>{{ gear.item_quantity }}</td>
-            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
-            <span class="edit-gear">
-              <dialog id="gear-details">
-                <form method="dialog">
-                  <h2>Gear Info</h2>
-                  <p>
-                    Name:
-                    <input type="text" v-model="currentGear.item_name" />
-                  </p>
-                  <p>
-                    Description:
-                    <input type="text" v-model="currentGear.item_description" />
-                  </p>
-                  <p>
-                    Weight:
-                    <input type="text" v-model="currentGear.item_weight" />
-                  </p>
-                  <p>
-                    Quantity:
-                    <input type="text" v-model="currentGear.item_quantity" />
-                  </p>
-                  <!-- <p>
+          <tbody>
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 25)" v-bind:key="gear.id">
+              <td>{{ gear.item_name }}</td>
+              <td>{{ gear.item_description }}</td>
+              <td>{{ gear.item_weight }} oz.</td>
+              <td>{{ gear.item_quantity }}</td>
+              <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
+              <span class="edit-gear">
+                <dialog id="gear-details">
+                  <form method="dialog">
+                    <h2>Gear Info</h2>
+                    <p>
+                      Name:
+                      <input type="text" v-model="currentGear.item_name" />
+                    </p>
+                    <p>
+                      Description:
+                      <input type="text" v-model="currentGear.item_description" />
+                    </p>
+                    <p>
+                      Weight:
+                      <input type="text" v-model="currentGear.item_weight" />
+                    </p>
+                    <p>
+                      Quantity:
+                      <input type="text" v-model="currentGear.item_quantity" />
+                    </p>
+                    <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
-                  <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
-                  </p>
-                  <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
-                  <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
-                  <button>Close</button>
-                </form>
-              </dialog>
-            </span>
-          </tr>
-        </tbody>
-      </table>
-      <h2>Shoes</h2>
-      <p v-if="this.shoes.length == 0">There are no shoes!</p>
-
-      <table id="shoes">
-        <tbody>
-          <tr v-for="gear in gears.filter((gear) => gear.category_id == 26)" v-bind:key="gear.id">
-            <td>{{ gear.item_name }}</td>
-            <td>{{ gear.item_description }}</td>
-            <td>{{ gear.item_weight }} oz.</td>
-            <td>{{ gear.item_quantity }}</td>
-            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
-            <span class="edit-gear">
-              <dialog id="gear-details">
-                <form method="dialog">
-                  <h2>Gear Info</h2>
-                  <p>
-                    Name:
-                    <input type="text" v-model="currentGear.item_name" />
-                  </p>
-                  <p>
-                    Description:
-                    <input type="text" v-model="currentGear.item_description" />
-                  </p>
-                  <p>
-                    Weight:
-                    <input type="text" v-model="currentGear.item_weight" />
-                  </p>
-                  <p>
-                    Quantity:
-                    <input type="text" v-model="currentGear.item_quantity" />
-                  </p>
-                  <!-- <p>
+                    <p>
+                      Category:
+                      <input type="text" v-model="currentGear.item_category" />
+                    </p>
+                    <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
+                    <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
+                    <button>Close</button>
+                  </form>
+                </dialog>
+              </span>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Shoes</h2>
+        <table id="shoes">
+          <tbody>
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 26)" v-bind:key="gear.id">
+              <td>{{ gear.item_name }}</td>
+              <td>{{ gear.item_description }}</td>
+              <td>{{ gear.item_weight }} oz.</td>
+              <td>{{ gear.item_quantity }}</td>
+              <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
+              <span class="edit-gear">
+                <dialog id="gear-details">
+                  <form method="dialog">
+                    <h2>Gear Info</h2>
+                    <p>
+                      Name:
+                      <input type="text" v-model="currentGear.item_name" />
+                    </p>
+                    <p>
+                      Description:
+                      <input type="text" v-model="currentGear.item_description" />
+                    </p>
+                    <p>
+                      Weight:
+                      <input type="text" v-model="currentGear.item_weight" />
+                    </p>
+                    <p>
+                      Quantity:
+                      <input type="text" v-model="currentGear.item_quantity" />
+                    </p>
+                    <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
-                  <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
-                  </p>
-                  <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
-                  <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
-                  <button>Close</button>
-                </form>
-              </dialog>
-            </span>
-          </tr>
-        </tbody>
-      </table>
+                    <p>
+                      Category:
+                      <input type="text" v-model="currentGear.item_category" />
+                    </p>
+                    <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
+                    <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
+                    <button>Close</button>
+                  </form>
+                </dialog>
+              </span>
+            </tr>
+          </tbody>
+        </table>
 
-      <table id="toiletries">
-        <h2>Toiletries</h2>
-        <p v-if="this.toiletries.length == 0">There are no toiletry items.</p>
+        <table id="toiletries">
+          <h2>Toiletries</h2>
 
-        <tbody>
-          <tr v-for="gear in gears.filter((gear) => gear.category_id == 24)" v-bind:key="gear.id">
-            <!-- <div v-if="gears"> -->
-            <!-- <td>{{ gear.item_category[0].name }}</td> -->
-            <td>{{ gear.item_name }}</td>
-            <td>{{ gear.item_description }}</td>
-            <td>{{ gear.item_weight }} oz.</td>
-            <td>{{ gear.item_quantity }}</td>
-            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
-            <span class="edit-gear">
-              <dialog id="gear-details">
-                <form method="dialog">
-                  <h2>Gear Info</h2>
-                  <p>
-                    Name:
-                    <input type="text" v-model="currentGear.item_name" />
-                  </p>
-                  <p>
-                    Description:
-                    <input type="text" v-model="currentGear.item_description" />
-                  </p>
-                  <p>
-                    Weight:
-                    <input type="text" v-model="currentGear.item_weight" />
-                  </p>
-                  <p>
-                    Quantity:
-                    <input type="text" v-model="currentGear.item_quantity" />
-                  </p>
-                  <!-- <p>
+          <tbody>
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 24)" v-bind:key="gear.id">
+              <!-- <div v-if="gears"> -->
+              <!-- <td>{{ gear.item_category[0].name }}</td> -->
+              <td>{{ gear.item_name }}</td>
+              <td>{{ gear.item_description }}</td>
+              <td>{{ gear.item_weight }} oz.</td>
+              <td>{{ gear.item_quantity }}</td>
+              <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
+              <span class="edit-gear">
+                <dialog id="gear-details">
+                  <form method="dialog">
+                    <h2>Gear Info</h2>
+                    <p>
+                      Name:
+                      <input type="text" v-model="currentGear.item_name" />
+                    </p>
+                    <p>
+                      Description:
+                      <input type="text" v-model="currentGear.item_description" />
+                    </p>
+                    <p>
+                      Weight:
+                      <input type="text" v-model="currentGear.item_weight" />
+                    </p>
+                    <p>
+                      Quantity:
+                      <input type="text" v-model="currentGear.item_quantity" />
+                    </p>
+                    <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
-                  <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
-                  </p>
-                  <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
-                  <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
-                  <button>Close</button>
-                </form>
-              </dialog>
-            </span>
-            <!-- </div> -->
-          </tr>
-          <!-- <div v:else>There are no toiletries.</div> -->
-        </tbody>
-      </table>
-      <!-- </span> -->
-      <h2>Misc.</h2>
-      <p v-if="this.misc.length == 0">There are no miscellanious items.</p>
-
-      <table id="misc">
-        <tbody>
-          <tr v-for="gear in gears.filter((gear) => gear.category_id == 27)" v-bind:key="gear.id">
-            <td>{{ gear.item_name }}</td>
-            <td>{{ gear.item_description }}</td>
-            <td>{{ gear.item_weight }} oz.</td>
-            <td>{{ gear.item_quantity }}</td>
-            <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
-            <span class="edit-gear">
-              <dialog id="gear-details">
-                <form method="dialog">
-                  <h2>Gear Info</h2>
-                  <p>
-                    Name:
-                    <input type="text" v-model="currentGear.item_name" />
-                  </p>
-                  <p>
-                    Description:
-                    <input type="text" v-model="currentGear.item_description" />
-                  </p>
-                  <p>
-                    Weight:
-                    <input type="text" v-model="currentGear.item_weight" />
-                  </p>
-                  <p>
-                    Quantity:
-                    <input type="text" v-model="currentGear.item_quantity" />
-                  </p>
-                  <!-- <p>
+                    <p>
+                      Category:
+                      <input type="text" v-model="currentGear.item_category" />
+                    </p>
+                    <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
+                    <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
+                    <button>Close</button>
+                  </form>
+                </dialog>
+              </span>
+              <!-- </div> -->
+            </tr>
+            <!-- <div v:else>There are no toiletries.</div> -->
+          </tbody>
+        </table>
+        <!-- </span> -->
+        <h2>Misc.</h2>
+        <table id="misc">
+          <tbody>
+            <tr v-for="gear in gears.filter((gear) => gear.category_id == 27)" v-bind:key="gear.id">
+              <td>{{ gear.item_name }}</td>
+              <td>{{ gear.item_description }}</td>
+              <td>{{ gear.item_weight }} oz.</td>
+              <td>{{ gear.item_quantity }}</td>
+              <td><button type="button" class="btn btn-info" v-on:click="showGear(gear)">Edit!</button></td>
+              <span class="edit-gear">
+                <dialog id="gear-details">
+                  <form method="dialog">
+                    <h2>Gear Info</h2>
+                    <p>
+                      Name:
+                      <input type="text" v-model="currentGear.item_name" />
+                    </p>
+                    <p>
+                      Description:
+                      <input type="text" v-model="currentGear.item_description" />
+                    </p>
+                    <p>
+                      Weight:
+                      <input type="text" v-model="currentGear.item_weight" />
+                    </p>
+                    <p>
+                      Quantity:
+                      <input type="text" v-model="currentGear.item_quantity" />
+                    </p>
+                    <!-- <p>
                     Url:
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
-                  <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
-                  </p>
-                  <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
-                  <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
-                  <button>Close</button>
-                </form>
-              </dialog>
-            </span>
-          </tr>
-        </tbody>
-      </table>
-      <!-- </tbody> -->
+                    <p>
+                      Category:
+                      <input type="text" v-model="currentGear.item_category" />
+                    </p>
+                    <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
+                    <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
+                    <button>Close</button>
+                  </form>
+                </dialog>
+              </span>
+            </tr>
+          </tbody>
+        </table>
+      </tbody>
     </div>
 
     <!-- Project Card Example -->
