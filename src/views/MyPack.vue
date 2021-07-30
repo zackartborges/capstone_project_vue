@@ -89,8 +89,8 @@
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
                   <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
+                    <!-- Category:
+                    <input type="text" v-model="currentGear.item_category" /> -->
                   </p>
                   <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
                   <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
@@ -135,8 +135,8 @@
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
                   <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
+                    <!-- Category:
+                    <input type="text" v-model="currentGear.item_category" /> -->
                   </p>
                   <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
                   <button v-on:click.prevent="destroyGear(currentGear)">Destroy</button>
@@ -182,8 +182,8 @@
                     <input type="text" v-model="currentGear.item_url" />
                   </p> -->
                   <p>
-                    Category:
-                    <input type="text" v-model="currentGear.item_category" />
+                    <!-- Category:
+                    <input type="text" v-model="currentGear.item_category" /> -->
                   </p>
                   <!-- add in a line to display the catagory total weight -->
                   <button v-on:click.prevent="updateGear(currentGear)" data-dismiss="modal">Update</button>
