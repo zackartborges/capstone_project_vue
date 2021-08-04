@@ -215,7 +215,7 @@ p {
 <script>
 // import CategoryVFor from "./components/CategoryVFor.vue";
 
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   data: function () {
@@ -226,7 +226,7 @@ export default {
     };
   },
   created: function () {
-    this.showUser();
+    // this.showUser();
   },
   methods: {
     isLoggedIn: function () {
@@ -235,16 +235,16 @@ export default {
     getUserId: function () {
       return localStorage.getItem("user_id");
     },
-    showUser: function () {
-      axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
-        this.user = response.data;
-        console.log("user:", this.user);
-        this.totalSum = this.user.gears.reduce(function (tot, arr) {
-          return tot + arr.item_weight;
-        }, 0);
-        console.log(this.totalSum.toFixed(2));
-      });
-    },
+    // showUser: function () {
+    //   axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
+    //     this.user = response.data;
+    //     console.log("user:", this.user);
+    //     this.totalSum = this.user.gears.reduce(function (tot, arr) {
+    //       return tot + arr.item_weight;
+    //     }, 0);
+    //     console.log(this.totalSum.toFixed(2));
+    //   });
+    // },
   },
   // components: {
   //   CategoryVFor,
