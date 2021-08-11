@@ -1,7 +1,7 @@
 # OurPack Frontend
 
 July 13, 2021 (Two months after graduating from Actualize Full Stack Bootcamp) -
-This was one of my first personal where I personally created a web application from scratch, and is an example of my basic understanding of Vue.js as a framework. I will soon be working on restarting the front end to demonstrate how my knowledge has grown since graduating from the boot camp.
+This was one of my first projects where I personally created a web application from scratch, and is an example of my basic understanding of Vue.js as a framework. I will soon be working on restarting the front end to demonstrate how my knowledge has grown since graduating from the boot camp.
 
 -----
 This is a simple CRUD application that allows backpackers/hikers to
