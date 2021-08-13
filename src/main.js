@@ -18,7 +18,7 @@ Vue.use(IconsPlugin);
 // Data table for vue with vanilla HTML structure
 
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://ourpack.herokuapp.com/";
+axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://ourpack.herokuapp.com";
 // axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "https://ourpack.netlify.app" : "/";
 
 var jwt = localStorage.getItem("jwt");
